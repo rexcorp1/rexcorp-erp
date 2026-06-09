@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import './globals.css';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
@@ -110,7 +111,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col bg-white font-sans text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div className="flex h-screen flex-col bg-background font-sans text-foreground">
       <Header 
         toggleSidebar={toggleSidebar}
         breadcrumbs={breadcrumbs}
@@ -125,7 +126,7 @@ const App: React.FC = () => {
           activeSubView={activeSubView}
           setActiveSubView={setActiveSubView}
         />
-        <main className="flex-1 overflow-y-auto p-6 custom-scrollbar bg-white dark:bg-gray-800">
+        <main className="flex-1 overflow-y-auto p-6 custom-scrollbar bg-background">
           <MainContent
             activeView={activeView}
             activeSubView={activeSubView}

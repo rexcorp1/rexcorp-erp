@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Wifi, Database, CheckCircle2, Clock, UserCircle, GitBranch } from 'lucide-react';
+import { Database, CheckCircle2, Clock, UserCircle, GitBranch } from 'lucide-react';
 import type { StatusBarSettings } from '../types';
+import { cn } from '../lib/utils';
 
 interface StatusBarProps {
     settings: StatusBarSettings;
@@ -29,9 +30,9 @@ const StatusBar: React.FC<StatusBarProps> = ({ settings }) => {
   };
 
   return (
-    <footer className="flex h-8 flex-shrink-0 items-center justify-between border-t border-gray-200 bg-gray-50 px-6 dark:bg-gray-800 dark:border-gray-700">
+    <footer className="flex h-8 flex-shrink-0 items-center justify-between border-t border-border bg-card px-6">
       {/* Left side: Status indicators */}
-      <div className="flex items-center space-x-4 text-xs text-gray-600 dark:text-gray-400">
+      <div className="flex items-center space-x-4 text-xs text-muted-foreground">
         {settings.showSystemStatus && (
             <div className="flex items-center space-x-1.5">
               <span className="relative flex h-2 w-2">
@@ -62,7 +63,7 @@ const StatusBar: React.FC<StatusBarProps> = ({ settings }) => {
       </div>
 
       {/* Right side: Time and Currency */}
-      <div className="flex items-center space-x-6 text-xs text-gray-600 dark:text-gray-400">
+      <div className="flex items-center space-x-6 text-xs text-muted-foreground">
         {settings.showCurrentUser && (
             <div className="flex items-center space-x-1.5">
               <UserCircle className="h-3 w-3" />
@@ -72,7 +73,7 @@ const StatusBar: React.FC<StatusBarProps> = ({ settings }) => {
         {settings.showExchangeRate && (
             <div className="font-medium">
                 <span>USD/IDR: </span>
-                <span className="font-semibold text-gray-800 dark:text-gray-200">16,450.50</span>
+                <span className="font-semibold text-foreground">16,450.50</span>
             </div>
         )}
         {settings.showDateTime && (

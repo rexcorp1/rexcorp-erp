@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SIDEBAR_ITEMS, ChevronDownIcon } from '../constants';
 import type { SidebarNavItem } from '../types';
+import { cn } from '../lib/utils';
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -62,22 +63,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, activeView, setActiveV
             e.preventDefault();
             handleNavClick(item);
           }}
-          className={`flex items-center justify-between rounded-md px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 ${
-            isMainActive && !hasSubItems ? 'bg-gray-200 dark:bg-gray-700' : ''
-          } ${
-            isMainActive && hasSubItems ? 'font-semibold text-gray-900 dark:text-gray-100' : ''
-          }`}
+          className={cn(
+            'flex items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-smooth',
+            isMainActive && !hasSubItems && 'bg-accent text-accent-foreground',
+            isMainActive && hasSubItems && 'font-semibold text-foreground',
+            !isMainActive && 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+          )}
         >
           <div className="flex items-center space-x-3">
             {item.icon}
             <span>{item.label}</span>
           </div>
-          {item.subItems !== undefined && ( // Show dropdown for any item with subItems array
-            <ChevronDownIcon className={`h-5 w-5 text-gray-800 transform transition-transform duration-200 dark:text-gray-300 ${isOpen ? 'rotate-180' : ''}`} />
+          {item.subItems !== undefined && (
+            <ChevronDownIcon className={cn(
+              'h-5 w-5 transform transition-transform duration-200',
+              isOpen && 'rotate-180'
+            )} />
           )}
         </a>
         {isOpen && hasSubItems && (
-           <ul className="pl-4 pt-1">
+           <ul className="space-y-1 pl-4 pt-1">
             {item.subItems?.map(subItem => {
                 const isSubActive = isMainActive && activeSubView === subItem.id;
                 return (
@@ -88,9 +93,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, activeView, setActiveV
                             e.preventDefault();
                             handleSubItemClick(item, subItem);
                          }}
-                         className={`flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 ${
-                            isSubActive ? 'bg-gray-200 dark:bg-gray-700' : 'text-gray-600 dark:text-gray-400'
-                         }`}
+                         className={cn(
+                           'flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-smooth',
+                           isSubActive && 'bg-accent text-accent-foreground',
+                           !isSubActive && 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                         )}
                         >
                           {subItem.icon}
                           <span>{subItem.label}</span>
@@ -105,7 +112,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, activeView, setActiveV
   };
 
   return (
-    <aside className={`flex w-64 flex-col bg-white dark:bg-gray-800 ${!isSidebarOpen && 'hidden'}`}>
+    <aside className={cn(
+      'flex w-64 flex-col bg-card border-r border-border',
+      !isSidebarOpen && 'hidden'
+    )}>
       <nav className="flex-1 overflow-y-auto custom-scrollbar">
         <ul className="space-y-1 p-2">
           {SIDEBAR_ITEMS.map(renderNavItem)}
