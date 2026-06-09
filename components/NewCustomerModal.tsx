@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { XIcon } from '../constants';
 import type { Customer } from '../types';
+import { cn } from '../lib/utils';
 
 interface NewCustomerModalProps {
     onClose: () => void;
@@ -56,18 +57,21 @@ const NewCustomerModal: React.FC<NewCustomerModalProps> = ({ onClose, onEditFull
 
     return (
         <div 
-            className="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-60 pt-20 overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 pt-20 overflow-y-auto"
             aria-labelledby="modal-title"
             role="dialog"
             aria-modal="true"
         >
-            <div className="w-full max-w-2xl transform rounded-lg bg-white dark:bg-gray-800 shadow-xl transition-all my-8 mx-4">
+            <div className="w-full max-w-2xl transform rounded-lg bg-card shadow-lg transition-all my-8 mx-4">
                 {/* Header */}
-                <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 p-4">
-                    <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100" id="modal-title">New Customer</h2>
+                <div className="flex items-center justify-between border-b border-border p-4">
+                    <h2 className="text-lg font-semibold text-foreground" id="modal-title">New Customer</h2>
                     <button 
                         onClick={onClose}
-                        className="rounded-full p-1 text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
+                        className={cn(
+                          'rounded-full p-1 text-muted-foreground transition-smooth',
+                          'hover:bg-accent hover:text-foreground'
+                        )}
                         aria-label="Close"
                     >
                         <XIcon className="h-5 w-5" />
@@ -77,14 +81,14 @@ const NewCustomerModal: React.FC<NewCustomerModalProps> = ({ onClose, onEditFull
                 {/* Body */}
                 <div className="space-y-6 p-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
                     {error && (
-                        <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm">
+                        <div className="p-3 bg-destructive/10 border border-destructive text-destructive rounded text-sm">
                             {error}
                         </div>
                     )}
                     
                     <div>
-                        <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">
-                            Customer Name <span className="text-red-500">*</span>
+                        <label className="text-sm font-medium text-foreground mb-1 block">
+                            Customer Name <span className="text-destructive">*</span>
                         </label>
                         <input 
                             type="text" 
@@ -94,19 +98,29 @@ const NewCustomerModal: React.FC<NewCustomerModalProps> = ({ onClose, onEditFull
                                 if (error) setError('');
                             }}
                             placeholder="Enter Customer Name"
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className={cn(
+                              'w-full rounded-md border border-input bg-background px-3 py-2 text-sm',
+                              'text-foreground placeholder-muted-foreground',
+                              'transition-smooth',
+                              'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                            )}
                         />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">
+                            <label className="text-sm font-medium text-foreground mb-1 block">
                                 Customer Group
                             </label>
                             <select 
                                 value={group} 
                                 onChange={(e) => setGroup(e.target.value)}
-                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className={cn(
+                                  'w-full rounded-md border border-input bg-background px-3 py-2 text-sm',
+                                  'text-foreground',
+                                  'transition-smooth',
+                                  'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                )}
                             >
                                 <option value="Corporate">Corporate</option>
                                 <option value="Commercial">Commercial</option>
@@ -116,13 +130,18 @@ const NewCustomerModal: React.FC<NewCustomerModalProps> = ({ onClose, onEditFull
                             </select>
                         </div>
                         <div>
-                            <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">
+                            <label className="text-sm font-medium text-foreground mb-1 block">
                                 Status
                             </label>
                             <select 
                                 value={status} 
                                 onChange={(e) => setStatus(e.target.value as 'Enabled' | 'Disabled')}
-                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className={cn(
+                                  'w-full rounded-md border border-input bg-background px-3 py-2 text-sm',
+                                  'text-foreground',
+                                  'transition-smooth',
+                                  'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                )}
                             >
                                 <option value="Enabled">Enabled</option>
                                 <option value="Disabled">Disabled</option>
@@ -131,57 +150,81 @@ const NewCustomerModal: React.FC<NewCustomerModalProps> = ({ onClose, onEditFull
                     </div>
                     
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 border-b pb-2 mb-3">Primary Contact Details</h3>
+                        <h3 className="text-sm font-semibold text-foreground border-b border-border pb-2 mb-3">Primary Contact Details</h3>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Email ID</label>
+                                <label className="text-sm font-medium text-foreground mb-1 block">Email ID</label>
                                 <input 
                                     type="email" 
                                     value={email} 
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="email@example.com"
-                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className={cn(
+                                      'w-full rounded-md border border-input bg-background px-3 py-2 text-sm',
+                                      'text-foreground placeholder-muted-foreground',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                 />
                             </div>
                             <div>
-                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Mobile Number</label>
+                                <label className="text-sm font-medium text-foreground mb-1 block">Mobile Number</label>
                                 <input 
                                     type="text" 
                                     value={phone} 
                                     onChange={(e) => setPhone(e.target.value)}
                                     placeholder="+62..."
-                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className={cn(
+                                      'w-full rounded-md border border-input bg-background px-3 py-2 text-sm',
+                                      'text-foreground placeholder-muted-foreground',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                 />
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 border-b pb-2 mb-3">Primary Address Details</h3>
+                        <h3 className="text-sm font-semibold text-foreground border-b border-border pb-2 mb-3">Primary Address Details</h3>
                         <div>
-                            <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Address</label>
+                            <label className="text-sm font-medium text-foreground mb-1 block">Address</label>
                             <textarea 
                                 value={address} 
                                 onChange={(e) => setAddress(e.target.value)}
                                 placeholder="Enter address details..."
                                 rows={2}
-                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className={cn(
+                                  'w-full rounded-md border border-input bg-background px-3 py-2 text-sm',
+                                  'text-foreground placeholder-muted-foreground',
+                                  'transition-smooth',
+                                  'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary',
+                                  'resize-none'
+                                )}
                             />
                         </div>
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-end space-x-3 rounded-b-lg border-t border-gray-200 bg-gray-50 dark:bg-gray-800/50 dark:border-gray-700 p-4">
+                <div className="flex items-center justify-end gap-3 rounded-b-lg border-t border-border bg-accent p-4">
                     <button 
                         onClick={onEditFullForm}
-                        className="rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-600"
+                        className={cn(
+                          'rounded-md bg-background px-4 py-2 text-sm font-medium',
+                          'text-foreground border border-input',
+                          'transition-smooth hover:bg-accent/50'
+                        )}
                     >
                         Edit Full Form
                     </button>
                     <button 
                         onClick={handleSave}
-                        className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+                        className={cn(
+                          'rounded-md bg-primary px-4 py-2 text-sm font-semibold',
+                          'text-primary-foreground',
+                          'transition-smooth hover:opacity-90'
+                        )}
                     >
                         Save
                     </button>
