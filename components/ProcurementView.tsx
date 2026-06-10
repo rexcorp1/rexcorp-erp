@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Breadcrumb } from '../types';
+import { cn } from '../lib/utils';
 import { UserCheck, ShieldCheck, Mail, Phone, MapPin, Search, Plus, Trash2, Edit2, Coins, FileCheck, CheckCircle, Clock } from 'lucide-react';
 
 interface Partner {
@@ -292,17 +293,22 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
     if (activeSubView === 'partner-directory') {
         if (isCreatingPartner || isEditingPartner) {
             return (
-                <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 font-sans">
-                    <h2 className="text-base font-bold font-mono text-gray-900 dark:text-gray-50 mb-6">
+                <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+                    <h2 className="text-base font-semibold text-foreground mb-6">
                         {isCreatingPartner ? 'Register New Procurement Vendor / Shipping Partner' : 'Edit Partner Profile'}
                     </h2>
                     <form onSubmit={savePartnerForm} className="space-y-6">
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Company Legal Name</label>
+                                <label className="block text-xs font-semibold text-foreground mb-1">Company Legal Name</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className={cn(
+                                      'block w-full rounded-md border border-input px-3 py-2 text-sm',
+                                      'text-foreground placeholder-muted-foreground bg-background',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                     value={partnerForm.companyName || ''}
                                     onChange={e => setPartnerForm({...partnerForm, companyName: e.target.value})}
                                     placeholder="e.g. PT Samudera Logistik Nusantara"
@@ -311,9 +317,14 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Operations Segment type</label>
+                                <label className="block text-xs font-semibold text-foreground mb-1">Operations Segment type</label>
                                 <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className={cn(
+                                      'block w-full rounded-md border border-input px-3 py-2 text-sm',
+                                      'text-foreground bg-background',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                     value={partnerForm.type || 'Trucking'}
                                     onChange={e => setPartnerForm({...partnerForm, type: e.target.value as any})}
                                     required
@@ -326,10 +337,15 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Key Contact Person</label>
+                                <label className="block text-xs font-semibold text-foreground mb-1">Key Contact Person</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className={cn(
+                                      'block w-full rounded-md border border-input px-3 py-2 text-sm',
+                                      'text-foreground placeholder-muted-foreground bg-background',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                     value={partnerForm.contactPerson || ''}
                                     onChange={e => setPartnerForm({...partnerForm, contactPerson: e.target.value})}
                                     placeholder="e.g. Hendra Santoso"
@@ -338,10 +354,15 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Contact Email</label>
+                                <label className="block text-xs font-semibold text-foreground mb-1">Contact Email</label>
                                 <input 
                                     type="email"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className={cn(
+                                      'block w-full rounded-md border border-input px-3 py-2 text-sm',
+                                      'text-foreground placeholder-muted-foreground bg-background',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                     value={partnerForm.email || ''}
                                     onChange={e => setPartnerForm({...partnerForm, email: e.target.value})}
                                     placeholder="e.g. contact@samudera.com"
@@ -350,10 +371,15 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Phone Number</label>
+                                <label className="block text-xs font-semibold text-foreground mb-1">Phone Number</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className={cn(
+                                      'block w-full rounded-md border border-input px-3 py-2 text-sm',
+                                      'text-foreground placeholder-muted-foreground bg-background',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                     value={partnerForm.phone || ''}
                                     onChange={e => setPartnerForm({...partnerForm, phone: e.target.value})}
                                     required
@@ -361,28 +387,40 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </div>
 
                             <div>
-                                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Partner KPI Rating Score (0.0 - 5.0)</label>
+                                <label className="block text-xs font-semibold text-foreground mb-1">Partner KPI Rating Score (0.0 - 5.0)</label>
                                 <input 
                                     type="number"
                                     step="0.1"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                                    className={cn(
+                                      'block w-full rounded-md border border-input px-3 py-2 text-sm',
+                                      'text-foreground bg-background',
+                                      'transition-smooth',
+                                      'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                                    )}
                                     value={partnerForm.rating || 5.0}
                                     onChange={e => setPartnerForm({...partnerForm, rating: Number(e.target.value)})}
                                 />
                             </div>
                         </div>
 
-                        <div className="flex gap-3 justify-end border-t pt-4 dark:border-gray-700">
+                        <div className="flex gap-3 justify-end border-t border-border pt-4">
                             <button 
                                 type="button"
                                 onClick={() => { setIsCreatingPartner(false); setIsEditingPartner(false); }}
-                                className="px-4 py-2 border rounded text-xs tracking-wider uppercase font-mono font-medium hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300"
+                                className={cn(
+                                  'px-4 py-2 border border-input rounded-md text-xs font-medium',
+                                  'text-foreground bg-background',
+                                  'transition-smooth hover:bg-accent'
+                                )}
                             >
                                 Cancel
                             </button>
                             <button 
                                 type="submit"
-                                className="px-4 py-2 bg-blue-600 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
+                                className={cn(
+                                  'px-4 py-2 bg-primary text-primary-foreground rounded-md text-xs font-medium',
+                                  'transition-smooth hover:opacity-90'
+                                )}
                             >
                                 Save Partner Entry
                             </button>
@@ -394,20 +432,28 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
         return (
             <div className="space-y-6">
-                <div className="flex justify-between items-center flex-wrap gap-4 bg-white p-4 rounded-lg border shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div className="flex justify-between items-center flex-wrap gap-4 bg-card p-4 rounded-lg border border-border shadow-sm">
                     <div className="relative max-w-sm w-full">
                         <input 
                             type="text"
                             placeholder="Search partners directory..."
-                            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                            className={cn(
+                              'w-full pl-9 pr-3 py-2 border border-input rounded-md text-sm',
+                              'text-foreground placeholder-muted-foreground bg-background',
+                              'transition-smooth',
+                              'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
+                            )}
                             value={partnerSearch}
                             onChange={e => setPartnerSearch(e.target.value)}
                         />
-                        <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                        <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                     </div>
                     <button 
                         onClick={openNewPartnerForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
+                        className={cn(
+                          'inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground rounded-md text-xs font-semibold',
+                          'transition-smooth hover:opacity-90 shadow-sm'
+                        )}
                     >
                         <Plus className="h-4 w-4" /> Add Logistics Vendor
                     </button>
@@ -415,37 +461,46 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
                 <div className="grid gap-6 md:grid-cols-2">
                     {filteredPartners.map(p => (
-                        <div key={p.id} className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-800 flex flex-col justify-between">
+                        <div key={p.id} className="rounded-lg border border-border bg-card p-5 shadow-sm flex flex-col justify-between">
                             <div>
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <span className="text-[10px] font-bold font-mono text-blue-600 bg-blue-50 dark:bg-blue-950/40 dark:text-blue-400 px-2 py-0.5 rounded">
+                                <div className="flex justify-between items-start gap-4">
+                                    <div className="flex-1">
+                                        <span className={cn(
+                                          'text-[10px] font-semibold font-sans px-2.5 py-1 rounded-md',
+                                          'bg-secondary text-secondary-foreground'
+                                        )}>
                                             {p.type}
                                         </span>
-                                        <h3 className="mt-2 text-base font-bold font-serif text-gray-900 dark:text-gray-55">{p.companyName}</h3>
+                                        <h3 className="mt-2 text-base font-semibold font-sans text-foreground">{p.companyName}</h3>
                                     </div>
-                                    <span className="text-xs font-mono font-semibold text-amber-500 flex items-center gap-1">
+                                    <span className="text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1 whitespace-nowrap">
                                         ★ {p.rating}
                                     </span>
                                 </div>
 
-                                <div className="mt-4 space-y-2 text-xs font-mono text-gray-600 dark:text-gray-450 border-t pt-3 dark:border-gray-700">
-                                    <div className="flex items-center gap-2"><UserCheck className="h-4 w-4 text-gray-400" /> <span className="font-sans text-gray-700 dark:text-gray-305">{p.contactPerson}</span></div>
-                                    <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-gray-400" /> {p.email}</div>
-                                    <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-gray-400" /> {p.phone}</div>
+                                <div className="mt-4 space-y-2 text-xs text-muted-foreground border-t border-border pt-3">
+                                    <div className="flex items-center gap-2"><UserCheck className="h-4 w-4" /> <span className="text-foreground">{p.contactPerson}</span></div>
+                                    <div className="flex items-center gap-2"><Mail className="h-4 w-4" /> <span className="text-foreground">{p.email}</span></div>
+                                    <div className="flex items-center gap-2"><Phone className="h-4 w-4" /> <span className="text-foreground">{p.phone}</span></div>
                                 </div>
                             </div>
 
-                            <div className="mt-6 flex justify-end gap-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+                            <div className="mt-6 flex justify-end gap-3 pt-3 border-t border-border">
                                 <button 
                                     onClick={() => openEditPartnerForm(p)}
-                                    className="text-xs font-mono font-medium text-blue-600 dark:text-blue-400 p-1 flex items-center gap-1"
+                                    className={cn(
+                                      'text-xs font-medium text-primary p-1 flex items-center gap-1',
+                                      'transition-smooth hover:text-primary/80'
+                                    )}
                                 >
                                     <Edit2 className="h-3.5 w-3.5" /> Edit
                                 </button>
                                 <button 
                                     onClick={() => deletePartner(p.id)}
-                                    className="text-xs font-mono font-medium text-red-500 p-1 flex items-center gap-1"
+                                    className={cn(
+                                      'text-xs font-medium text-destructive p-1 flex items-center gap-1',
+                                      'transition-smooth hover:text-destructive/80'
+                                    )}
                                 >
                                     <Trash2 className="h-3.5 w-3.5" /> Delete
                                 </button>
@@ -745,14 +800,17 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
         return (
             <div className="space-y-6 flex-col">
-                <div className="flex justify-between items-center bg-white p-4 rounded-lg border shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div className="flex justify-between items-center bg-card p-4 rounded-lg border border-border shadow-sm">
                     <div>
-                        <h2 className="text-base font-bold font-mono text-gray-900 dark:text-gray-50 flex items-center gap-1.5"><FileCheck className="h-5 w-5 text-indigo-400" /> Procurement Jobs Purchase Orders (PO)</h2>
-                        <p className="text-xs text-gray-500">Track outward commitments issued to local brokers, depots, and carriers.</p>
+                        <h2 className="text-base font-semibold text-foreground flex items-center gap-1.5"><FileCheck className="h-5 w-5 text-primary" /> Procurement Jobs Purchase Orders (PO)</h2>
+                        <p className="text-xs text-muted-foreground mt-1">Track outward commitments issued to local brokers, depots, and carriers.</p>
                     </div>
                     <button 
                         onClick={openNewPoForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
+                        className={cn(
+                          'inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground rounded-md text-xs font-semibold',
+                          'transition-smooth hover:opacity-90 shadow-sm'
+                        )}
                     >
                         <Plus className="h-4 w-4" /> Issue PO Document
                     </button>
@@ -760,35 +818,43 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
                 <div className="grid gap-6 md:grid-cols-2">
                     {purchaseOrders.map(po => {
-                        const paid = po.status === 'Invoiced' || po.status === 'Approved';
+                        const statusConfig = {
+                            'Invoiced': { bg: 'bg-green-100/80', text: 'text-green-700 dark:text-green-300', badge: 'bg-green-50 dark:bg-green-950/20' },
+                            'Approved': { bg: 'bg-blue-100/80', text: 'text-blue-700 dark:text-blue-300', badge: 'bg-blue-50 dark:bg-blue-950/20' },
+                            'Sent': { bg: 'bg-amber-100/80', text: 'text-amber-700 dark:text-amber-300', badge: 'bg-amber-50 dark:bg-amber-950/20' },
+                            'Draft': { bg: 'bg-gray-100/80', text: 'text-gray-700 dark:text-gray-300', badge: 'bg-gray-50 dark:bg-gray-950/20' }
+                        };
+                        const config = statusConfig[po.status as keyof typeof statusConfig];
                         return (
-                            <div key={po.id} className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-800 flex flex-col justify-between">
+                            <div key={po.id} className="rounded-lg border border-border bg-card p-5 shadow-sm flex flex-col justify-between">
                                 <div>
-                                    <div className="flex justify-between items-start">
-                                        <div>
-                                            <span className="text-xs font-mono font-bold text-gray-900 dark:text-indigo-400">
+                                    <div className="flex justify-between items-start gap-4">
+                                        <div className="flex-1">
+                                            <span className="text-xs font-semibold font-sans text-muted-foreground">
                                                 {po.poNumber}
                                             </span>
-                                            <h3 className="mt-1 text-sm font-bold font-serif text-gray-800 dark:text-gray-100 leading-tight">
+                                            <h3 className="mt-1 text-sm font-semibold font-sans text-foreground leading-tight">
                                                 {po.vendorName}
                                             </h3>
                                         </div>
-                                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                                            paid ? 'bg-emerald-50 text-emerald-800 border border-emerald-100 dark:bg-emerald-950/20' : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
-                                        }`}>
-                                            {po.status === 'Invoiced' ? <CheckCircle className="h-3 w-3 mr-1" /> : <Clock className="h-3 w-3 mr-1" />}
+                                        <span className={cn(
+                                          'inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-semibold whitespace-nowrap',
+                                          config.badge,
+                                          config.text
+                                        )}>
+                                            {po.status === 'Invoiced' ? <CheckCircle className="h-3 w-3" /> : <Clock className="h-3 w-3" />}
                                             {po.status}
                                         </span>
                                     </div>
-                                    <p className="mt-3 text-xs text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
+                                    <p className="mt-3 text-xs text-muted-foreground leading-relaxed font-sans">
                                         {po.serviceDescription}
                                     </p>
                                 </div>
 
-                                <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center whitespace-nowrap">
+                                <div className="mt-4 pt-4 border-t border-border flex justify-between items-center gap-4">
                                     <div>
-                                        <span className="text-[10px] font-mono text-gray-400 block uppercase tracking-widest">Order value</span>
-                                        <span className="font-mono text-sm text-indigo-600 dark:text-indigo-400 font-bold">
+                                        <span className="text-[10px] font-semibold text-muted-foreground block uppercase tracking-wide">Order value</span>
+                                        <span className="font-semibold text-sm text-foreground mt-1">
                                             Rp {po.totalAmountIDR.toLocaleString()}
                                         </span>
                                     </div>
@@ -796,13 +862,19 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                     <div className="flex gap-2">
                                         <button 
                                             onClick={() => openEditPoForm(po)}
-                                            className="text-xs font-mono font-medium text-blue-600 dark:text-blue-400 p-1 flex items-center gap-1"
+                                            className={cn(
+                                              'text-xs font-medium text-primary p-1 flex items-center gap-1',
+                                              'transition-smooth hover:text-primary/80'
+                                            )}
                                         >
                                             <Edit2 className="h-3.5 w-3.5" /> Edit
                                         </button>
                                         <button 
                                             onClick={() => deletePo(po.id)}
-                                            className="text-xs font-mono font-medium text-red-500 p-1 flex items-center gap-1"
+                                            className={cn(
+                                              'text-xs font-medium text-destructive p-1 flex items-center gap-1',
+                                              'transition-smooth hover:text-destructive/80'
+                                            )}
                                         >
                                             <Trash2 className="h-3.5 w-3.5" /> Delete
                                         </button>
