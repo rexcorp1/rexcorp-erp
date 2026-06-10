@@ -1,5 +1,6 @@
 
 
+import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import {
     ChevronDownIcon,
@@ -70,7 +71,7 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                                 <option>Land</option>
                             </select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <button className="text-sm font-medium text-primary hover:underline dark:text-primary">Edit Filters</button>
                     </div>
                 </aside>
 
@@ -101,7 +102,7 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Shipments</h1>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <button className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 flex items-center space-x-2 dark:bg-blue-600 dark:hover:bg-blue-700">
+                            <button className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 flex items-center space-x-2 dark:bg-primary dark:hover:opacity-90">
                                 <PlusIcon className="h-4 w-4" />
                                 <span>New Shipment</span>
                             </button>
@@ -142,7 +143,7 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                                     <tr key={shipment.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
                                         <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            <button onClick={() => onShipmentSelect(shipment.id)} className="text-blue-600 hover:underline dark:text-blue-400">
+                                            <button onClick={() => onShipmentSelect(shipment.id)} className="text-primary hover:underline dark:text-primary">
                                                 {shipment.shipmentId}
                                             </button>
                                         </td>

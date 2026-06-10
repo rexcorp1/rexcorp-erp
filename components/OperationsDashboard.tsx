@@ -1,5 +1,6 @@
 
 
+import { cn } from '../lib/utils';
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { 
@@ -88,7 +89,7 @@ const OperationsDashboard: React.FC<OperationsDashboardProps> = ({ setActiveView
                             <button 
                                 key={shortcut.id} 
                                 onClick={() => shortcut.isSubView ? setActiveSubView(shortcut.view) : setActiveView(shortcut.view)}
-                                className="w-full flex items-center justify-between text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150"
+                                className="w-full flex items-center justify-between text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary p-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150"
                             >
                                 <div className="flex items-center space-x-3">
                                     <shortcut.icon className="h-5 w-5 text-gray-500 dark:text-gray-400" />

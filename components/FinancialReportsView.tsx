@@ -1,4 +1,5 @@
 
+import { cn } from '../lib/utils';
 import React from 'react';
 import { FINANCIAL_REPORTS_DATA, ArrowUpRightIcon } from '../constants';
 
@@ -17,7 +18,7 @@ const FinancialReportsView: React.FC = () => {
               <ul className="mt-3 space-y-2">
                 {category.links.map(link => (
                   <li key={link.id}>
-                    <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                    <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary">
                       <span>{link.label}</span>
                        <ArrowUpRightIcon />
                     </a>
@@ -38,7 +39,7 @@ const FinancialReportsView: React.FC = () => {
           <ul className="mt-3 space-y-2">
             {otherReportsCategory.links.map(link => (
               <li key={link.id}>
-                <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary">
                   <span>{link.label}</span>
                   <ArrowUpRightIcon />
                 </a>

@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React, { useState, useEffect, useRef } from 'react';
 import type { PackingList, PackingListItem, Customer } from '../types';
 import { PACKING_LISTS_DATA, CUSTOMERS_DATA, PACKING_LIST_TEMPLATE_HTML, XIcon, DotsHorizontalIcon, RefreshIcon, PrinterIcon, ArrowUpRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, FileCodeIcon, ChevronDownIcon, AlignLeftIcon, AlignRightIcon } from '../constants';
@@ -585,7 +586,7 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                 <button onClick={handlePrint} className="px-3 py-1.5 text-sm font-medium rounded-md bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 flex items-center space-x-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"><FileCodeIcon className="h-4 w-4" /><span>PDF</span></button>
                 <button onClick={handleRefresh} className="px-3 py-1.5 text-sm font-medium rounded-md bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 flex items-center space-x-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"><RefreshIcon className="h-4 w-4" /><span>Refresh</span></button>
                 <button className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"><DotsHorizontalIcon className="h-4 w-4"/></button>
-                <button onClick={handlePrint} className="px-4 py-1.5 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 flex items-center space-x-2 dark:bg-blue-600 dark:hover:bg-blue-700"><PrinterIcon className="h-4 w-4"/><span>Print</span></button>
+                <button onClick={handlePrint} className="px-4 py-1.5 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 flex items-center space-x-2 dark:bg-primary dark:hover:opacity-90"><PrinterIcon className="h-4 w-4"/><span>Print</span></button>
             </div>
         </div>
     );
@@ -595,7 +596,7 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
             <div className="flex items-center space-x-4"><h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{isNew ? 'New Packing List' : `${packingList?.packingListNumber}`}</h1></div>
             <div className="flex items-center space-x-4">
                 <button onClick={() => setIsPreview(true)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Preview</button>
-                <button onClick={handleSave} className="px-4 py-2 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">Save</button>
+                <button onClick={handleSave} className="px-4 py-2 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">Save</button>
             </div>
         </div>
     );

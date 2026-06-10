@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import {
     ChevronDownIcon,
@@ -67,12 +68,12 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                             <label htmlFor="created-by" className="sr-only">Created By</label>
                             <select id="created-by" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Created By</option></select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <button className="text-sm font-medium text-primary hover:underline dark:text-primary">Edit Filters</button>
                          <div className="space-y-2">
                             <label htmlFor="tags" className="sr-only">Tags</label>
                             <select id="tags" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Tags</option></select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Show Tags</button>
+                        <button className="text-sm font-medium text-primary hover:underline dark:text-primary">Show Tags</button>
                         <div className="space-y-2 border-t pt-4 dark:border-gray-600">
                              <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Save Filter</h3>
                              <label htmlFor="filter-name" className="sr-only">Filter Name</label>
@@ -113,7 +114,7 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                             </button>
                              <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><RefreshIcon className="h-4 w-4" /></button>
                              <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4" /></button>
-                             <button onClick={onAddQuotation} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ Add Quotation</button>
+                             <button onClick={onAddQuotation} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">+ Add Quotation</button>
                         </div>
                     </div>
                     
@@ -168,7 +169,7 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                                     <tr key={quote.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
                                         <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            <button onClick={() => onQuotationSelect(quote)} className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
+                                            <button onClick={() => onQuotationSelect(quote)} className="text-primary hover:underline dark:text-primary font-bold">
                                                 {quote.clientName}
                                             </button>
                                         </td>

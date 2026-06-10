@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React from 'react';
 import { FileCode, FileText, Landmark, Plus, UploadCloud, Search } from 'lucide-react';
 
@@ -60,7 +61,7 @@ const DocumentHubView: React.FC = () => {
                         <UploadCloud className="h-4 w-4" />
                         <span>Bulk Upload</span>
                     </button>
-                    <button className="flex items-center space-x-2 rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">
+                    <button className="flex items-center space-x-2 rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">
                         <Plus className="h-4 w-4" />
                         <span>Create Document</span>
                     </button>
@@ -72,7 +73,7 @@ const DocumentHubView: React.FC = () => {
                 <input 
                     type="text"
                     placeholder="Search documents by type, shipment ID, or keyword..."
-                    className="w-full rounded-lg border border-gray-300 bg-white p-3 pl-12 text-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                    className="w-full rounded-lg border border-gray-300 bg-white p-3 pl-12 text-sm text-gray-900 placeholder-gray-500 focus:border-primary focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:border-blue-400 dark:focus:ring-blue-400"
                 />
             </div>
 

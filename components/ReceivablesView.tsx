@@ -1,4 +1,5 @@
 
+import { cn } from '../lib/utils';
 import React from 'react';
 import { 
     RECEIVABLES_SHORTCUTS, 
@@ -15,7 +16,7 @@ const ReceivablesView: React.FC = () => {
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Shortcuts</h2>
         <div className="mt-4 grid grid-cols-2 gap-x-12 gap-y-4 md:grid-cols-4">
           {RECEIVABLES_SHORTCUTS.map(shortcut => (
-            <a href="#" key={shortcut.id} className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+            <a href="#" key={shortcut.id} className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">
               <span>{shortcut.label}</span>
               <ArrowUpRightIcon />
               {shortcut.count && (
@@ -40,7 +41,7 @@ const ReceivablesView: React.FC = () => {
               <ul className="mt-3 space-y-2">
                 {category.links.map(link => (
                   <li key={link.id}>
-                    <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                    <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary">
                       <span>{link.label}</span>
                        <ArrowUpRightIcon />
                     </a>
@@ -63,7 +64,7 @@ const ReceivablesView: React.FC = () => {
                     <ul className="mt-3 space-y-2">
                         {RECEIVABLES_REPORTS_MASTERS_REPORTS_ONLY.links.map(link => (
                         <li key={link.id}>
-                            <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                            <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary">
                             <span>{link.label}</span>
                             <ArrowUpRightIcon />
                             </a>

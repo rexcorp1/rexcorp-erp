@@ -1,5 +1,6 @@
 
 
+import { cn } from '../lib/utils';
 import React, { useState, useRef, useEffect } from 'react';
 import { getAIResponse } from '../services/geminiService';
 import { SparklesIcon, XIcon } from '../constants';
@@ -199,7 +200,7 @@ const AIAssistantView: React.FC = () => {
                 <img src={`data:${attachedFile.mimeType};base64,${attachedFile.data}`} alt={attachedFile.name} className="h-16 w-16 object-cover rounded-md" />
                 <button 
                     onClick={() => setAttachedFile(null)} 
-                    className="absolute -top-2 -right-2 bg-gray-600 text-white rounded-full p-0.5 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="absolute -top-2 -right-2 bg-gray-600 text-primary-foreground rounded-md-full p-0.5 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                     aria-label="Remove attachment"
                 >
                     <XIcon className="h-4 w-4" />
@@ -413,7 +414,7 @@ const AIAssistantView: React.FC = () => {
                 <button
                   onClick={() => handleSend()}
                   disabled={isLoading || (!input.trim() && !attachedFile)}
-                  className="rounded-md bg-black p-2 text-white hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed dark:bg-blue-600 dark:hover:bg-blue-700 dark:disabled:bg-gray-500"
+                  className="rounded-md bg-black p-2 text-white hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed dark:bg-primary dark:hover:opacity-90 dark:disabled:bg-gray-500"
                   aria-label="Send message"
                 >
                   <ArrowUp className="h-5 w-5" />

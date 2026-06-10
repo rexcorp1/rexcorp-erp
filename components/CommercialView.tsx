@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React, { useState, useEffect } from 'react';
 import CustomerManagementView from './CustomerManagementView';
 import CustomerDetailView from './CustomerDetailView';
@@ -309,16 +310,16 @@ const CommercialView: React.FC<CommercialViewProps> = ({
             <div className="grid gap-6 md:grid-cols-3">
                 <button 
                     onClick={() => setActiveSubView('client-accounts')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-primary hover:shadow dark:border-gray-700 dark:bg-gray-800"
                 >
                     <div className="rounded-lg bg-blue-50 p-2.5 dark:bg-blue-950/50">
-                        <UsersIcon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        <UsersIcon className="h-6 w-6 text-primary dark:text-primary" />
                     </div>
                     <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono">Client Accounts</h3>
                     <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                         Manage database profiles of exporters/importers, field agents, overseas networks, and interactions history.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-primary hover:text-primary dark:text-primary">
                         Open Accounts &rarr;
                     </span>
                 </button>

@@ -1,4 +1,5 @@
 
+import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import {
     ChevronDownIcon,
@@ -48,7 +49,7 @@ const PackingListView: React.FC<PackingListViewProps> = ({ packingLists, onPacki
                             <label htmlFor="status" className="sr-only">Status</label>
                             <select id="status" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Status</option></select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <button className="text-sm font-medium text-primary hover:underline dark:text-primary">Edit Filters</button>
                     </div>
                 </aside>
 
@@ -78,7 +79,7 @@ const PackingListView: React.FC<PackingListViewProps> = ({ packingLists, onPacki
                             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Packing Lists</h1>
                         </div>
                         <div className="flex items-center space-x-2">
-                             <button onClick={onNewPackingList} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ New Packing List</button>
+                             <button onClick={onNewPackingList} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">+ New Packing List</button>
                         </div>
                     </div>
                     
@@ -114,12 +115,12 @@ const PackingListView: React.FC<PackingListViewProps> = ({ packingLists, onPacki
                                     <tr key={pl.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
                                         <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            <button onClick={() => onPackingListSelect(pl.id)} className="text-blue-600 hover:underline dark:text-blue-400">
+                                            <button onClick={() => onPackingListSelect(pl.id)} className="text-primary hover:underline dark:text-primary">
                                                 {pl.packingListNumber}
                                             </button>
                                         </td>
                                         <td className="px-6 py-4">{pl.packingListDate}</td>
-                                        <td className="px-6 py-4 font-semibold text-blue-600 hover:underline dark:text-blue-400">{pl.shipmentId}</td>
+                                        <td className="px-6 py-4 font-semibold text-primary hover:underline dark:text-primary">{pl.shipmentId}</td>
                                         <td className="px-6 py-4">{getStatusBadge(pl.status)}</td>
                                         <td className="px-6 py-4">{pl.billToName}</td>
                                     </tr>

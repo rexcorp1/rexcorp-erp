@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React, { useState, useEffect } from 'react';
 import type { Breadcrumb } from '../types';
 import { Landmark, ShieldCheck, Calculator, Plus, Printer, Edit2, Search, Trash2 } from 'lucide-react';
@@ -293,7 +294,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Document Type</label>
                                 <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.type || 'PEB'}
                                     onChange={e => setDocForm({...docForm, type: e.target.value as 'PIB' | 'PEB'})}
                                     required
@@ -307,7 +308,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Registry Serial No / Aju No</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.docNo || ''}
                                     onChange={e => setDocForm({...docForm, docNo: e.target.value})}
                                     placeholder="e.g. 001290-06-2026"
@@ -319,7 +320,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Client Account Profile</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.client || ''}
                                     onChange={e => setDocForm({...docForm, client: e.target.value})}
                                     placeholder="e.g. PT Nusantara Jaya"
@@ -331,7 +332,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Submission / Draft Date</label>
                                 <input 
                                     type="date"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.submitDate || ''}
                                     onChange={e => setDocForm({...docForm, submitDate: e.target.value})}
                                     required
@@ -342,7 +343,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Goods Classification HS Code</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
                                     value={docForm.hsCode || ''}
                                     onChange={e => setDocForm({...docForm, hsCode: e.target.value})}
                                     placeholder="e.g. 0901.11.10"
@@ -354,7 +355,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Cargo Invoice Value (FOB/CIF USD)</label>
                                 <input 
                                     type="number"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.invoiceValueUSD || 0}
                                     onChange={e => setDocForm({...docForm, invoiceValueUSD: Number(e.target.value)})}
                                     placeholder="e.g. 45000"
@@ -365,7 +366,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                             <div className="sm:col-span-2">
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Precise Cargo Description (Harmonized with Customs)</label>
                                 <textarea 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.goodsDescription || ''}
                                     onChange={e => setDocForm({...docForm, goodsDescription: e.target.value})}
                                     rows={3}
@@ -378,7 +379,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Total Duty Amount (IDR Estimated)</label>
                                 <input 
                                     type="number"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.dutyAmountIDR || 0}
                                     onChange={e => setDocForm({...docForm, dutyAmountIDR: Number(e.target.value)})}
                                     placeholder="Calculated Import duties / levies"
@@ -388,7 +389,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Customs Flow Status</label>
                                 <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={docForm.status || 'Draft'}
                                     onChange={e => setDocForm({...docForm, status: e.target.value as any})}
                                     required
@@ -412,7 +413,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                             </button>
                             <button 
                                 type="submit"
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
+                                className="px-4 py-2 bg-primary hover:opacity-90 text-primary-foreground rounded-md text-xs tracking-wider uppercase font-mono font-medium"
                             >
                                 Save Declaration
                             </button>
@@ -431,7 +432,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                     </div>
                     <button 
                         onClick={openNewDocForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
+                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-primary hover:opacity-90 text-primary-foreground rounded-md text-xs tracking-wider uppercase font-mono font-medium shadow"
                     >
                         <Plus className="h-4 w-4" /> Import/Export PIB-PEB
                     </button>
@@ -481,7 +482,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                                 doc.status === 'Jalur Hijau' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-900/50' :
                                                 doc.status === 'Jalur Kuning' ? 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-900/50' :
                                                 doc.status === 'Jalur Merah' ? 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-900/50 animate-pulse' :
-                                                doc.status === 'Sent' ? 'bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/30' :
+                                                doc.status === 'Sent' ? 'bg-blue-50 text-primary border border-blue-200 dark:bg-blue-950/30' :
                                                 'bg-gray-100 text-gray-500 border border-gray-200 dark:bg-gray-800'
                                             }`}>
                                                 <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current"></span>
@@ -530,7 +531,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">License / Permit Name</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.name || ''}
                                     onChange={e => setLicForm({...licForm, name: e.target.value})}
                                     placeholder="e.g. Persetujuan Impor (PI)"
@@ -542,7 +543,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono font-mono">License Number</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.licenseNumber || ''}
                                     onChange={e => setLicForm({...licForm, licenseNumber: e.target.value})}
                                     placeholder="e.g. 05.PI-23.4983"
@@ -554,7 +555,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono font-mono">Issuing Authority</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.issuedBy || ''}
                                     onChange={e => setLicForm({...licForm, issuedBy: e.target.value})}
                                     placeholder="e.g. Kementerian Perdagangan RI"
@@ -566,7 +567,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono font-mono">Document Classification Category</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.documentType || ''}
                                     onChange={e => setLicForm({...licForm, documentType: e.target.value})}
                                     placeholder="e.g. Import License, Corporate Permit"
@@ -578,7 +579,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Date of Issue</label>
                                 <input 
                                     type="date"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.issueDate || ''}
                                     onChange={e => setLicForm({...licForm, issueDate: e.target.value})}
                                     required
@@ -589,7 +590,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Expiry Date (or specify 'Lifetime')</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.expiryDate || ''}
                                     onChange={e => setLicForm({...licForm, expiryDate: e.target.value})}
                                     placeholder="e.g. 2028-12-31 or Lifetime"
@@ -600,7 +601,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Validity Status</label>
                                 <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={licForm.status || 'Active'}
                                     onChange={e => setLicForm({...licForm, status: e.target.value as any})}
                                     required
@@ -622,7 +623,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                             </button>
                             <button 
                                 type="submit"
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
+                                className="px-4 py-2 bg-primary hover:opacity-90 text-primary-foreground rounded-md text-xs tracking-wider uppercase font-mono font-medium"
                             >
                                 Save Permit License
                             </button>
@@ -641,7 +642,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                     </div>
                     <button 
                         onClick={openNewLicForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
+                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-primary hover:opacity-90 text-primary-foreground rounded-md text-xs tracking-wider uppercase font-mono font-medium shadow"
                     >
                         <Plus className="h-4 w-4" /> Add Trade Permit
                     </button>
@@ -687,7 +688,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                                 <div className="mt-4 flex gap-2 justify-end border-t pt-3 dark:border-gray-700">
                                     <button 
                                         onClick={() => openEditLicForm(lic)}
-                                        className="text-xs text-blue-600 hover:text-blue-700 font-mono font-medium dark:text-blue-400 flex items-center gap-1"
+                                        className="text-xs text-primary hover:text-primary font-mono font-medium dark:text-primary flex items-center gap-1"
                                     >
                                         <Edit2 className="h-3 w-3" /> Edit
                                     </button>
@@ -780,7 +781,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
 
                 {/* Right side calculation feedback */}
                 <div className="space-y-6">
-                    <div className="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-lg p-6 shadow-md">
+                    <div className="bg-gradient-to-br from-indigo-900 to-slate-900 text-primary-foreground rounded-md-lg p-6 shadow-md">
                         <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-300 font-mono">Taxation Simulator Output</h3>
                         
                         {matchedTariff && calculatedTaxDetails ? (
@@ -859,7 +860,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
             <div className="grid gap-6 md:grid-cols-3">
                 <button 
                     onClick={() => setActiveSubView('customs-declarations')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-primary hover:shadow dark:border-gray-700 dark:bg-gray-800"
                 >
                     <div className="rounded-lg bg-indigo-50 p-2.5 dark:bg-indigo-950/40">
                         <Landmark className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
@@ -868,30 +869,30 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 leading-normal">
                         Draft officially declared PIB/PEB documentation, and monitor Customs flow status through green/yellow/red lanes.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-primary dark:text-primary">
                         Open Declarations &rarr;
                     </span>
                 </button>
 
                 <button 
                     onClick={() => setActiveSubView('trade-licenses')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-primary hover:shadow dark:border-gray-700 dark:bg-gray-800"
                 >
                     <div className="rounded-lg bg-blue-50 p-2.5 dark:bg-blue-950/40">
-                        <ShieldCheck className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        <ShieldCheck className="h-6 w-6 text-primary dark:text-primary" />
                     </div>
                     <h3 className="mt-4 text-base font-semibold text-gray-905 dark:text-gray-100 font-mono">Trade Licenses</h3>
                     <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 leading-normal">
                         Keep track of active perizinan, import quotas, and quarantine certifications with automated expiry alerts.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-primary dark:text-primary">
                         Manage Licenses &rarr;
                     </span>
                 </button>
 
                 <button 
                     onClick={() => setActiveSubView('duty-tariffs')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-primary hover:shadow dark:border-gray-700 dark:bg-gray-800"
                 >
                     <div className="rounded-lg bg-amber-50 p-2.5 dark:bg-amber-950/40">
                         <Calculator className="h-6 w-6 text-amber-600 dark:text-amber-400" />
@@ -900,7 +901,7 @@ const ComplianceView: React.FC<ComplianceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 leading-normal">
                         Instantly consult HS tariffs, taxes coefficients, and restricted item import barriers (Lartas) via the simulator.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-primary dark:text-primary">
                         Open Lookup Simulator &rarr;
                     </span>
                 </button>

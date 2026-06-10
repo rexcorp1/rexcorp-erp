@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React, { useState, useCallback } from 'react';
 import { getBusinessInsights } from '../services/geminiService';
 import { SparklesIcon } from '../constants';
@@ -44,7 +45,7 @@ const AIEnhancedInsight: React.FC = () => {
         <button
           onClick={handleGenerateInsight}
           disabled={isLoading}
-          className="flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+          className="flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:bg-blue-300"
         >
           {isLoading ? (
             <svg className="h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

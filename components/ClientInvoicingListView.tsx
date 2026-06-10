@@ -1,4 +1,5 @@
 
+import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import {
     ChevronDownIcon,
@@ -53,7 +54,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                             <label htmlFor="status" className="sr-only">Status</label>
                             <select id="status" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Status</option></select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <button className="text-sm font-medium text-primary hover:underline dark:text-primary">Edit Filters</button>
                          <div className="space-y-2 border-t pt-4 dark:border-gray-600">
                              <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Save Filter</h3>
                              <label htmlFor="filter-name" className="sr-only">Filter Name</label>
@@ -93,7 +94,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                             </button>
                              <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><RefreshIcon className="h-4 w-4" /></button>
                              <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4" /></button>
-                             <button onClick={onNewInvoice} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ New Invoice</button>
+                             <button onClick={onNewInvoice} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">+ New Invoice</button>
                         </div>
                     </div>
                     
@@ -130,7 +131,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                                     <tr key={invoice.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
                                         <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            <button onClick={() => onInvoiceSelect(invoice.id)} className="text-blue-600 hover:underline dark:text-blue-400">
+                                            <button onClick={() => onInvoiceSelect(invoice.id)} className="text-primary hover:underline dark:text-primary">
                                                 {invoice.invoiceNumber}
                                             </button>
                                         </td>

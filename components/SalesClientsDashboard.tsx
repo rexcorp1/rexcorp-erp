@@ -1,5 +1,6 @@
 
 
+import { cn } from '../lib/utils';
 import React from 'react';
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList
@@ -69,7 +70,7 @@ const SalesClientsDashboard: React.FC = () => {
                     <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">Quick Access</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4">
                         {SALES_DASHBOARD_SHORTCUTS.map(shortcut => (
-                            <a href="#" key={shortcut.id} className="group flex items-center text-base font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+                            <a href="#" key={shortcut.id} className="group flex items-center text-base font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">
                                <div className="flex items-center">
                                     <span>{shortcut.label}</span>
                                     <ArrowUpRightIcon />
@@ -91,7 +92,7 @@ const SalesClientsDashboard: React.FC = () => {
                                 <ul className="space-y-2">
                                     {category.links.map(link => (
                                         <li key={link.id}>
-                                            <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                                            <a href="#" className="flex items-center space-x-2 text-sm text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary">
                                                 <span>{link.label}</span>
                                                 <ArrowUpRightIcon />
                                             </a>

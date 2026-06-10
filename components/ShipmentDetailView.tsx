@@ -1,5 +1,6 @@
 
 
+import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import type { Shipment, ShipmentStatus } from '../types';
 import { 
@@ -33,13 +34,13 @@ const DetailItem: React.FC<{ label: string; value: string | React.ReactNode; }> 
 const TimelineItem: React.FC<{ status: string; isCompleted: boolean; isCurrent: boolean; }> = ({ status, isCompleted, isCurrent }) => (
     <li className="relative flex items-start">
         <div className="flex h-9 items-center">
-            <div className={`relative flex h-6 w-6 items-center justify-center rounded-full ${isCompleted || isCurrent ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'}`}>
+            <div className={`relative flex h-6 w-6 items-center justify-center rounded-full ${isCompleted || isCurrent ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'}`}>
                 {isCompleted && <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
                 {isCurrent && <div className="h-2.5 w-2.5 rounded-full bg-white"></div>}
             </div>
         </div>
         <div className="ml-4 min-w-0">
-            <p className={`font-medium ${isCurrent ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}`}>{status}</p>
+            <p className={`font-medium ${isCurrent ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-300'}`}>{status}</p>
         </div>
     </li>
 );
@@ -96,7 +97,7 @@ const ShipmentDetailView: React.FC<ShipmentDetailViewProps> = ({ shipment, onBac
                     <button className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">Update Status</button>
                     <button className="p-2 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"><PrinterIcon className="h-4 w-4"/></button>
                     <button className="p-2 rounded hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4"/></button>
-                    <button className="px-4 py-2 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">Save</button>
+                    <button className="px-4 py-2 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">Save</button>
                 </div>
             </div>
 
@@ -110,7 +111,7 @@ const ShipmentDetailView: React.FC<ShipmentDetailViewProps> = ({ shipment, onBac
                              {getStatusBadge(shipment.status)}
                         </div>
                         <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-6">
-                            <DetailItem label="Client Name" value={<a href="#" className="text-blue-600 dark:text-blue-400 hover:underline">{shipment.clientName}</a>} />
+                            <DetailItem label="Client Name" value={<a href="#" className="text-primary dark:text-primary hover:underline">{shipment.clientName}</a>} />
                             <DetailItem label="Mode of Transport" value={shipment.mode} />
                             <DetailItem label="Origin" value={shipment.origin} />
                             <DetailItem label="Destination" value={shipment.destination} />
@@ -129,7 +130,7 @@ const ShipmentDetailView: React.FC<ShipmentDetailViewProps> = ({ shipment, onBac
                                         onClick={() => setActiveTab(tab)}
                                         className={`border-b-2 py-3 px-1 text-sm font-medium ${
                                             activeTab === tab 
-                                            ? 'border-blue-500 text-blue-600 dark:text-blue-400' 
+                                            ? 'border-primary text-primary dark:text-primary' 
                                             : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-gray-500'
                                         }`}
                                     >
@@ -150,11 +151,11 @@ const ShipmentDetailView: React.FC<ShipmentDetailViewProps> = ({ shipment, onBac
                                     <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                                         <li className="flex items-center justify-between py-3">
                                             <div className="flex items-center space-x-3 text-gray-800 dark:text-gray-200"><DocumentReportIcon className="h-5 w-5 text-gray-500 dark:text-gray-400"/><span>Bill_of_Lading_Final.pdf</span></div>
-                                            <a href="#" className="text-sm text-blue-600 hover:underline dark:text-blue-400">Download</a>
+                                            <a href="#" className="text-sm text-primary hover:underline dark:text-primary">Download</a>
                                         </li>
                                         <li className="flex items-center justify-between py-3">
                                             <div className="flex items-center space-x-3 text-gray-800 dark:text-gray-200"><DocumentReportIcon className="h-5 w-5 text-gray-500 dark:text-gray-400"/><span>Commercial_Invoice_REX001.pdf</span></div>
-                                            <a href="#" className="text-sm text-blue-600 hover:underline dark:text-blue-400">Download</a>
+                                            <a href="#" className="text-sm text-primary hover:underline dark:text-primary">Download</a>
                                         </li>
                                     </ul>
                                 </div>

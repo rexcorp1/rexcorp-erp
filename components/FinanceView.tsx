@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils';
 import React, { useState, useEffect } from 'react';
 import type { Breadcrumb, Invoice } from '../types';
 import ClientInvoicingListView from './ClientInvoicingListView';
@@ -423,7 +424,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                             </button>
                             <button 
                                 type="submit"
-                                className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90"
                             >
                                 Save Accrual Row
                             </button>
@@ -444,7 +445,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     </div>
                     <button 
                         onClick={openNewAccrualForm}
-                        className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700 inline-flex items-center space-x-2"
+                        className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90 inline-flex items-center space-x-2"
                     >
                         <Plus className="h-4 w-4" /> <span>Log Accrual Fee</span>
                     </button>
@@ -514,7 +515,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     </div>
                     <button 
                         onClick={openPostTxForm}
-                        className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700 inline-flex items-center space-x-2"
+                        className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90 inline-flex items-center space-x-2"
                     >
                         <Plus className="h-4 w-4" /> <span>Post Journal Entry</span>
                     </button>
@@ -591,7 +592,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                                 </button>
                                 <button 
                                     type="submit" 
-                                    className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                    className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90"
                                 >
                                     Post Entry
                                 </button>
@@ -704,7 +705,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Create invoices, adjust billing items, calculate VAT rates, and transmit invoices electronically to clients.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline dark:text-primary">
                         Open Invoices &rarr;
                     </span>
                 </button>
@@ -720,7 +721,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Reconcile unpaid invoices aging schedules (30/60/90 days overdue thresholds) and manage corporate liquidity assets.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline dark:text-primary">
                         Open Receivables &rarr;
                     </span>
                 </button>
@@ -736,7 +737,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Log freight voyages accruals basis operational expenses rows before formal vendor bills materialize on file.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline dark:text-primary">
                         Open Accruals Registry &rarr;
                     </span>
                 </button>
@@ -752,7 +753,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Audit bills submitted by global carriers lines, depot yards, and local truckers before executing accounts payments.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline dark:text-primary">
                         Open Vendor Bills &rarr;
                     </span>
                 </button>
@@ -768,7 +769,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Unified balance audit worksheets Reconciling trial totals, Debit/Credit flows, and journal cash movements.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline dark:text-primary">
                         Open Main Ledger &rarr;
                     </span>
                 </button>

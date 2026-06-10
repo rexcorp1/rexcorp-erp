@@ -1,4 +1,5 @@
 
+import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import {
     ChevronDoubleLeftIcon,
@@ -42,7 +43,7 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
                             <label htmlFor="status" className="sr-only">Status</label>
                             <select id="status" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Status</option></select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <button className="text-sm font-medium text-primary hover:underline dark:text-primary">Edit Filters</button>
                     </div>
                 </aside>
 
@@ -72,7 +73,7 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
                             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Shipping Instructions</h1>
                         </div>
                         <div className="flex items-center space-x-2">
-                             <button onClick={onNewSi} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ New SI</button>
+                             <button onClick={onNewSi} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-primary dark:hover:opacity-90">+ New SI</button>
                         </div>
                     </div>
                     
@@ -94,7 +95,7 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
                                     <tr key={si.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
                                         <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white whitespace-nowrap">
-                                            <button onClick={() => onSiSelect(si.id)} className="text-blue-600 hover:underline dark:text-blue-400">
+                                            <button onClick={() => onSiSelect(si.id)} className="text-primary hover:underline dark:text-primary">
                                                 {si.shippingInstructionNumber}
                                             </button>
                                         </td>
