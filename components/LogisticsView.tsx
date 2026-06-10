@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Breadcrumb, Shipment, PackingList, ShippingInstruction } from '../types';
+import { cn } from '../lib/utils';
 import OperationsDashboard from './OperationsDashboard';
 import ShipmentListView from './ShipmentListView';
 import ShipmentDetailView from './ShipmentDetailView';
@@ -641,7 +642,10 @@ const LogisticsView: React.FC<LogisticsViewProps> = ({
                             </button>
                             <button 
                                 type="submit"
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
+                                className={cn(
+                                  'px-4 py-2 bg-primary text-primary-foreground rounded-md text-xs font-semibold',
+                                  'transition-smooth hover:opacity-90'
+                                )}
                             >
                                 Save Demurrage case
                             </button>
@@ -653,14 +657,17 @@ const LogisticsView: React.FC<LogisticsViewProps> = ({
 
         return (
             <div className="space-y-6">
-                <div className="flex justify-between items-center flex-wrap gap-4 bg-white p-4 rounded-lg border shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div className="flex justify-between items-center flex-wrap gap-4 bg-card p-4 rounded-lg border border-border shadow-sm">
                     <div>
-                        <h2 className="text-lg font-bold font-mono text-gray-900 dark:text-gray-50">Demurrage & Detention (D&D) Risk Tracker</h2>
-                        <p className="text-xs text-gray-500">Monitor container free-time expiration parameters and minimize costly port penalty storage liabilities.</p>
+                        <h2 className="text-lg font-semibold text-foreground">Demurrage & Detention (D&D) Risk Tracker</h2>
+                        <p className="text-xs text-muted-foreground mt-1">Monitor container free-time expiration parameters and minimize costly port penalty storage liabilities.</p>
                     </div>
                     <button 
                         onClick={openNewDdForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
+                        className={cn(
+                          'inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground rounded-md text-xs font-semibold',
+                          'transition-smooth hover:opacity-90 shadow-sm'
+                        )}
                     >
                         <Plus className="h-4 w-4" /> Add Container D&D Case
                     </button>
