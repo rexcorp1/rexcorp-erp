@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NewCustomerModal from './NewCustomerModal';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import {
     ChevronDownIcon,
@@ -18,12 +17,12 @@ import {
 } from '../constants';
 import type { Customer } from '../types';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 interface CustomerManagementViewProps {
     customers: Customer[];
     onCustomerSelect: (customer: Customer) => void;
     onAddNew: () => void;
-    onSaveCustomer: (customer: Customer) => void;
     isSubPanelOpen: boolean;
     toggleSubPanel: () => void;
 }
@@ -32,18 +31,12 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
     customers, 
     onCustomerSelect, 
     onAddNew, 
-    onSaveCustomer, 
     isSubPanelOpen, 
     toggleSubPanel 
 }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-
-    const handleEditFullForm = () => {
-        setIsModalOpen(false);
-        onAddNew();
-    };
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     // Filter customers based on search query
     const filteredCustomers = customers.filter(customer => {
@@ -54,12 +47,12 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
             customer.id.includes(query) ||
             customer.originalId.toLowerCase().includes(query)
         );
-    });
+    }).slice(0, itemsPerPage);
     
     return (
         <>
-            <div className="flex h-full flex-col">
-                <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-col">
+                <div className="flex flex-1">
                     {/* Filter Sidebar */}
                     <aside className={`w-64 flex-shrink-0 bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${!isSubPanelOpen ? 'hidden' : 'mr-6'}`}>
                         <div className="space-y-4">
@@ -111,7 +104,7 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                     </aside>
 
                     {/* Main Content */}
-                    <div className="flex-1 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+                    <div className="flex-1 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 flex flex-col overflow-hidden">
                         {/* Header Actions */}
                         <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700">
                             <div className="flex items-center space-x-2">
@@ -144,7 +137,7 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                                 </button>
                                  <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><RefreshIcon className="h-4 w-4" /></button>
                                  <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4" /></button>
-                                 <button onClick={() => setIsModalOpen(true)} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ Add Customer</button>
+                                 <button onClick={onAddNew} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ Add Customer</button>
                              </div>
                         </div>
                         
@@ -188,27 +181,27 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
 
                         {/* Customer Table */}
                         <div className="overflow-y-auto custom-scrollbar">
-                            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
-                                    <tr>
-                                        <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
-                                        <th scope="col" className="px-6 py-3 font-semibold">Customer Name</th>
-                                        <th scope="col" className="px-6 py-3 font-semibold">Status</th>
-                                        <th scope="col" className="px-6 py-3 font-semibold">Customer Group</th>
-                                        <th scope="col" className="px-6 py-3 font-semibold">ID</th>
-                                        <th scope="col" className="px-6 py-3"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></TableHead>
+                                        <TableHead>Customer Name</TableHead>
+                                        <TableHead>Status</TableHead>
+                                        <TableHead>Customer Group</TableHead>
+                                        <TableHead>ID</TableHead>
+                                        <TableHead></TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
                                     {filteredCustomers.map(customer => (
-                                        <tr key={customer.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
-                                            <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
-                                            <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                                <button onClick={() => onCustomerSelect(customer)} className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
+                                        <TableRow key={customer.id}>
+                                            <TableCell><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></TableCell>
+                                            <TableCell>
+                                                <button onClick={() => onCustomerSelect(customer)} className="font-semibold text-gray-900 dark:text-white">
                                                     {customer.name}
                                                 </button>
-                                            </td>
-                                            <td className="px-6 py-4">
+                                            </TableCell>
+                                            <TableCell>
                                                 <span className={`text-xs font-medium me-2 px-2.5 py-0.5 rounded-full ${
                                                     customer.status === 'Enabled' 
                                                     ? 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300' 
@@ -216,10 +209,10 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                                                 }`}>
                                                     {customer.status}
                                                 </span>
-                                            </td>
-                                            <td className="px-6 py-4 font-semibold text-gray-800 dark:text-gray-200">{customer.group}</td>
-                                            <td className="px-6 py-4 text-xs font-mono">{customer.id}</td>
-                                            <td className="px-6 py-4">
+                                            </TableCell>
+                                            <TableCell>{customer.group}</TableCell>
+                                            <TableCell>{customer.id}</TableCell>
+                                            <TableCell>
                                                 <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400">
                                                     {customer.initials && (
                                                         <span className="text-xs font-bold text-purple-600 bg-purple-100 rounded-full w-6 h-6 flex items-center justify-center dark:bg-purple-900 dark:text-purple-300">{customer.initials}</span>
@@ -235,27 +228,36 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                                                     </div>
                                                     <button className="text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"><DotsHorizontalIcon className="w-4 h-4"/></button>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </TableCell>
+                                        </TableRow>
                                     ))}
                                     {filteredCustomers.length === 0 && (
-                                        <tr>
-                                            <td colSpan={7} className="py-8 text-center text-gray-500 dark:text-gray-400 italic">No customers found.</td>
-                                        </tr>
+                                        <TableRow>
+                                            <TableCell colSpan={6} className="py-8 text-center text-gray-500 dark:text-gray-400 italic">No customers found.</TableCell>
+                                        </TableRow>
                                     )}
-                                </tbody>
-                            </table>
+                                </TableBody>
+                            </Table>
+                        </div>
+                        <div className="flex items-center justify-between p-4 border-t border-gray-200 dark:border-gray-700">
+                            <div className="text-sm text-gray-500">
+                                Showing <span>{filteredCustomers.length}</span> of {customers.length} entries
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <label className="text-sm">Show:</label>
+                                <select 
+                                    value={itemsPerPage}
+                                    onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                                    className="border rounded p-1 text-sm dark:bg-gray-700 dark:border-gray-600">
+                                    <option value="10">10</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {isModalOpen && (
-                <NewCustomerModal
-                    onClose={() => setIsModalOpen(false)}
-                    onEditFullForm={handleEditFullForm}
-                    onSave={onSaveCustomer}
-                />
-            )}
         </>
     );
 };
