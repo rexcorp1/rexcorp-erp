@@ -14,6 +14,7 @@ import {
     ChevronDoubleRightIcon,
     AlignLeftIcon,
     AlignRightIcon,
+    SearchIcon,
 } from '../constants';
 import type { Customer } from '../types';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -143,22 +144,15 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                         
                         {/* Search Pills */}
                         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                            <div className="flex items-center space-x-2">
+                             <div className="relative w-full md:w-80">
+                                <SearchIcon className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                                 <input 
                                     type="text" 
                                     placeholder="Search Customer..." 
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="rounded-md border border-gray-300 text-sm shadow-sm w-full md:w-80 p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                    className="w-full rounded-md border border-gray-300 bg-gray-50 py-2 pl-8 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:bg-gray-700/50 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500"
                                 />
-                                {searchQuery && (
-                                    <button 
-                                        onClick={() => setSearchQuery('')}
-                                        className="text-xs text-red-500 font-semibold hover:underline"
-                                    >
-                                        Clear
-                                    </button>
-                                )}
                             </div>
                         </div>
 
