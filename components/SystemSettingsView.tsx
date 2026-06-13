@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import type { Theme } from '../App';
 import type { CompanySettings, StatusBarSettings } from '../types';
 import { Sun, Moon, Monitor, UploadCloud } from 'lucide-react';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface SystemSettingsViewProps {
     theme: Theme;
@@ -102,27 +103,37 @@ const CompanyProfileSettings: React.FC<{
             <hr className="border-gray-200 dark:border-gray-700" />
 
             <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Financial Settings</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                  <div>
                     <label htmlFor="fiscalYearStart" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Fiscal Year Start</label>
                     <input type="date" name="fiscalYearStart" id="fiscalYearStart" value={settings.fiscalYearStart} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
                 </div>
-                <div>
+                    <div>
                     <label htmlFor="defaultCurrency" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Default Currency</label>
-                    <select id="defaultCurrency" name="defaultCurrency" value={settings.defaultCurrency} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600">
-                        <option value="IDR">IDR - Indonesian Rupiah</option>
-                        <option value="USD">USD - US Dollar</option>
-                        <option value="EUR">EUR - Euro</option>
-                    </select>
+                    <Select value={settings.defaultCurrency} onValueChange={val => onSettingsChange({ ...settings, defaultCurrency: val })}>
+                        <SelectTrigger className="mt-1 w-full py-2 pl-3 pr-10">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="IDR">IDR - Indonesian Rupiah</SelectItem>
+                            <SelectItem value="USD">USD - US Dollar</SelectItem>
+                            <SelectItem value="EUR">EUR - Euro</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div>
                     <label htmlFor="timezone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Timezone</label>
-                     <select id="timezone" name="timezone" value={settings.timezone} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600">
-                        <option value="Asia/Jakarta">Asia/Jakarta (WIB)</option>
-                        <option value="Asia/Makassar">Asia/Makassar (WITA)</option>
-                        <option value="Asia/Jayapura">Asia/Jayapura (WIT)</option>
-                        <option value="UTC">UTC</option>
-                    </select>
+                     <Select value={settings.timezone} onValueChange={val => onSettingsChange({ ...settings, timezone: val })}>
+                        <SelectTrigger className="mt-1 w-full py-2 pl-3 pr-10">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Asia/Jakarta">Asia/Jakarta (WIB)</SelectItem>
+                            <SelectItem value="Asia/Makassar">Asia/Makassar (WITA)</SelectItem>
+                            <SelectItem value="Asia/Jayapura">Asia/Jayapura (WIT)</SelectItem>
+                            <SelectItem value="UTC">UTC</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
         </div>

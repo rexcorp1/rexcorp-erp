@@ -6,6 +6,7 @@ import {
     XIcon,
     ArrowLeftIcon
 } from '../constants';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface CustomerContractDetailViewProps {
     contract: CustomerContract | null; // Null for new contract
@@ -145,19 +146,16 @@ const CustomerContractDetailView: React.FC<CustomerContractDetailViewProps> = ({
                            {/* Customer Field */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Customer *</label>
-                               <select 
-                                   value={customerName} 
-                                   onChange={e => setCustomerName(e.target.value)}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white font-semibold"
-                               >
-                                   <option value="">-- Choose Customer --</option>
-                                   {availableCustomers.map(cust => (
-                                       <option key={cust.id} value={cust.name}>{cust.name}</option>
-                                   ))}
-                                   {availableCustomers.length === 0 && (
-                                       <option disabled>No customers registered. Create one first!</option>
-                                   )}
-                               </select>
+                               <Select value={customerName} onValueChange={val => setCustomerName(val)}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue placeholder="-- Choose Customer --" />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       {availableCustomers.map(cust => (
+                                           <SelectItem key={cust.id} value={cust.name}>{cust.name}</SelectItem>
+                                       ))}
+                                   </SelectContent>
+                               </Select>
                            </div>
 
                            {/* Start Date */}
@@ -185,29 +183,31 @@ const CustomerContractDetailView: React.FC<CustomerContractDetailViewProps> = ({
                            {/* Contract Template Selector */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Contract Template *</label>
-                               <select 
-                                   value={contractTemplate} 
-                                   onChange={e => setContractTemplate(e.target.value)}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white"
-                               >
-                                   <option value="Standard Service Agreement">Standard Service Agreement</option>
-                                   <option value="Custom Logistics Rider">Custom Logistics Rider</option>
-                               </select>
+                               <Select value={contractTemplate} onValueChange={val => setContractTemplate(val)}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       <SelectItem value="Standard Service Agreement">Standard Service Agreement</SelectItem>
+                                       <SelectItem value="Custom Logistics Rider">Custom Logistics Rider</SelectItem>
+                                   </SelectContent>
+                               </Select>
                            </div>
 
                            {/* Status */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Status *</label>
-                               <select 
-                                   value={status} 
-                                   onChange={e => setStatus(e.target.value as CustomerContract['status'])}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white font-semibold"
-                               >
-                                   <option value="Draft">Draft</option>
-                                   <option value="Active">Active</option>
-                                   <option value="Terminated">Terminated</option>
-                                   <option value="Expired">Expired</option>
-                               </select>
+                               <Select value={status} onValueChange={val => setStatus(val as CustomerContract['status'])}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       <SelectItem value="Draft">Draft</SelectItem>
+                                       <SelectItem value="Active">Active</SelectItem>
+                                       <SelectItem value="Terminated">Terminated</SelectItem>
+                                       <SelectItem value="Expired">Expired</SelectItem>
+                                   </SelectContent>
+                               </Select>
                            </div>
                         </div>
 
@@ -258,16 +258,17 @@ const CustomerContractDetailView: React.FC<CustomerContractDetailViewProps> = ({
                                                     />
                                                 </td>
                                                 <td className="p-1">
-                                                    <select 
-                                                        value={item.unit} 
-                                                        onChange={e => handleItemChange(item.id, 'unit', e.target.value)} 
-                                                        className="w-full p-1.5 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-white"
-                                                    >
-                                                        <option>Per Shipment</option>
-                                                        <option>Per Container</option>
-                                                        <option>Per Hour</option>
-                                                        <option>Fixed</option>
-                                                    </select>
+                                                    <Select value={item.unit} onValueChange={val => handleItemChange(item.id, 'unit', val)}>
+                                                        <SelectTrigger className="w-full p-1.5">
+                                                            <SelectValue />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            <SelectItem value="Per Shipment">Per Shipment</SelectItem>
+                                                            <SelectItem value="Per Container">Per Container</SelectItem>
+                                                            <SelectItem value="Per Hour">Per Hour</SelectItem>
+                                                            <SelectItem value="Fixed">Fixed</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
                                                 </td>
                                                 <td className="p-1">
                                                     <input 

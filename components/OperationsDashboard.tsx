@@ -10,10 +10,12 @@ import {
     DotsHorizontalIcon,
     ArrowUpRightIcon,
 } from '../constants';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import type { OperationsDashboardCard, ShipmentStatusChartItem } from '../types';
 
 const SummaryCard: React.FC<{ card: OperationsDashboardCard }> = ({ card }) => (
-    <div key={card.id} className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
+    <Card key={card.id} className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
         <div className="flex items-center">
             <div className="flex-shrink-0">
                 <card.icon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
@@ -27,7 +29,7 @@ const SummaryCard: React.FC<{ card: OperationsDashboardCard }> = ({ card }) => (
                 </dl>
             </div>
         </div>
-    </div>
+    </Card>
 );
 
 interface OperationsDashboardProps {
@@ -53,8 +55,8 @@ const OperationsDashboard: React.FC<OperationsDashboardProps> = ({ setActiveView
                      <div className="flex items-center justify-between">
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Shipment Status Distribution</h3>
                         <div className="flex items-center space-x-2">
-                            <button className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><FilterIcon /></button>
-                            <button className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><DotsHorizontalIcon /></button>
+                            <Button variant="ghost" size="icon" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"><FilterIcon /></Button>
+                            <Button variant="ghost" size="icon" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"><DotsHorizontalIcon /></Button>
                         </div>
                     </div>
                     <div className="mt-6 h-80 w-full">
@@ -85,17 +87,18 @@ const OperationsDashboard: React.FC<OperationsDashboardProps> = ({ setActiveView
                     <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Quick Actions</h3>
                     <div className="mt-6 space-y-4">
                         {OPERATIONS_DASHBOARD_SHORTCUTS.map(shortcut => (
-                            <button 
-                                key={shortcut.id} 
+                            <Button
+                                key={shortcut.id}
+                                variant="outline"
+                                className="w-full justify-between text-sm font-medium text-gray-700 dark:text-gray-300 p-2 transition-colors duration-150"
                                 onClick={() => shortcut.isSubView ? setActiveSubView(shortcut.view) : setActiveView(shortcut.view)}
-                                className="w-full flex items-center justify-between text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150"
                             >
                                 <div className="flex items-center space-x-3">
                                     <shortcut.icon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                                     <span>{shortcut.label}</span>
                                 </div>
                                 <ArrowUpRightIcon />
-                            </button>
+                            </Button>
                         ))}
                     </div>
                 </div>

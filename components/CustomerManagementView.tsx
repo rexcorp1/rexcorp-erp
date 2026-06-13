@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NewCustomerModal from './NewCustomerModal';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import {
     ChevronDownIcon,
     ListIcon,
@@ -16,6 +17,7 @@ import {
     AlignRightIcon,
 } from '../constants';
 import type { Customer } from '../types';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface CustomerManagementViewProps {
     customers: Customer[];
@@ -65,23 +67,38 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                             
                             <div className="space-y-2">
                                 <label htmlFor="assigned-to" className="sr-only">Assigned To</label>
-                                <select id="assigned-to" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                    <option>Assigned To</option>
-                                </select>
+                                <Select disabled>
+                                    <SelectTrigger className="w-full p-2">
+                                        <SelectValue placeholder="Assigned To" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 
                                 <label htmlFor="created-by" className="sr-only">Created By</label>
-                                <select id="created-by" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                    <option>Created By</option>
-                                </select>
+                                <Select disabled>
+                                    <SelectTrigger className="w-full p-2">
+                                        <SelectValue placeholder="Created By" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
 
                              <div className="space-y-2">
                                 <label htmlFor="tags" className="sr-only">Tags</label>
-                                <select id="tags" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                    <option>Tags</option>
-                                </select>
+                                <Select disabled>
+                                    <SelectTrigger className="w-full p-2">
+                                        <SelectValue placeholder="Tags" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                             <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Show Tags</button>
                             
@@ -174,7 +191,7 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
                                     <tr>
-                                        <th scope="col" className="p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
+                                        <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
                                         <th scope="col" className="px-6 py-3 font-semibold">Customer Name</th>
                                         <th scope="col" className="px-6 py-3 font-semibold">Status</th>
                                         <th scope="col" className="px-6 py-3 font-semibold">Customer Group</th>
@@ -185,7 +202,7 @@ const CustomerManagementView: React.FC<CustomerManagementViewProps> = ({
                                 <tbody>
                                     {filteredCustomers.map(customer => (
                                         <tr key={customer.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
-                                            <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
+                                            <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                             <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                                                 <button onClick={() => onCustomerSelect(customer)} className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
                                                     {customer.name}

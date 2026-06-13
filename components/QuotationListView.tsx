@@ -15,6 +15,9 @@ import {
     AlignRightIcon,
 } from '../constants';
 import type { Quotation } from '../types';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface QuotationListViewProps {
     quotations: Quotation[];
@@ -59,18 +62,39 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
             <div className="flex flex-1 overflow-hidden">
                 {/* Filter Sidebar */}
                 <aside className={`w-64 flex-shrink-0 bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${!isSubPanelOpen ? 'hidden' : 'mr-6'}`}>
-                    <div className="space-y-4">
+                        <div className="space-y-2">
                         <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Filter By</h3>
                         <div className="space-y-2">
                             <label htmlFor="assigned-to" className="sr-only">Assigned To</label>
-                            <select id="assigned-to" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Assigned To</option></select>
+                            <Select onValueChange={() => {}}>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Assigned To" />
+                                </SelectTrigger>
+                                <SelectContent>                                    <SelectItem value="placeholder" disabled>No items</SelectItem>                                </SelectContent>
+                            </Select>
+                                </SelectContent>
+                            </Select>
                             <label htmlFor="created-by" className="sr-only">Created By</label>
-                            <select id="created-by" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Created By</option></select>
+                            <Select onValueChange={() => {}}>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Created By" />
+                                </SelectTrigger>
+                                <SelectContent>                                    <SelectItem value="placeholder" disabled>No items</SelectItem>                                </SelectContent>
+                            </Select>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
-                         <div className="space-y-2">
+                        <div className="space-y-2">
                             <label htmlFor="tags" className="sr-only">Tags</label>
-                            <select id="tags" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Tags</option></select>
+                            <Select onValueChange={() => {}}>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Tags" />
+                                </SelectTrigger>
+                                <SelectContent>                                    <SelectItem value="placeholder" disabled>No items</SelectItem>                                </SelectContent>
+                            </Select>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Show Tags</button>
                         <div className="space-y-2 border-t pt-4 dark:border-gray-600">
@@ -154,7 +178,7 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
                                 <tr>
-                                    <th scope="col" className="p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
+                                    <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Client Name</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Status</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Date</th>
@@ -166,7 +190,7 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                             <tbody>
                                 {filteredQuotations.map(quote => (
                                     <tr key={quote.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
-                                        <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
+                                        <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                                             <button onClick={() => onQuotationSelect(quote)} className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
                                                 {quote.clientName}
@@ -175,7 +199,7 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                                         <td className="px-6 py-4">{getStatusBadge(quote.status)}</td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">{quote.date}</td>
                                         <td className="px-6 py-4">{quote.grandTotal}</td>
-                                        <td className="px-6 py-4 text-xs font-mono">{quote.quotationId}</td>
+                                        <td className="px-6 py-4 text-xs">{quote.quotationId}</td>
                                         <td className="px-6 py-4">
                                             <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400">
                                                 <span className="text-xs">2 h</span>

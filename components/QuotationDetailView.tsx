@@ -6,6 +6,7 @@ import {
     XIcon,
     ArrowLeftIcon
 } from '../constants';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface QuotationDetailViewProps {
     quotation: Quotation | null; // Null for new quotation
@@ -174,45 +175,44 @@ const QuotationDetailView: React.FC<QuotationDetailViewProps> = ({ quotation, on
                            {/* Series Selector */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Series *</label>
-                               <select 
-                                   value={series} 
-                                   onChange={e => setSeries(e.target.value)}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white font-mono"
-                               >
-                                   <option value="SAL-QTN-.YYYY.-">SAL-QTN-.YYYY.-</option>
-                                   <option value="QTN-.YYYY.-">QTN-.YYYY.-</option>
-                               </select>
+                               <Select value={series} onValueChange={val => setSeries(val)}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       <SelectItem value="SAL-QTN-.YYYY.-">SAL-QTN-.YYYY.-</SelectItem>
+                                       <SelectItem value="QTN-.YYYY.-">QTN-.YYYY.-</SelectItem>
+                                   </SelectContent>
+                               </Select>
                            </div>
 
                            {/* Order Type */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Order Type *</label>
-                               <select 
-                                   value={orderType} 
-                                   onChange={e => setOrderType(e.target.value)}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white"
-                               >
-                                   <option value="Sales">Sales</option>
-                                   <option value="Maintenance">Maintenance</option>
-                               </select>
+                               <Select value={orderType} onValueChange={val => setOrderType(val)}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       <SelectItem value="Sales">Sales</SelectItem>
+                                       <SelectItem value="Maintenance">Maintenance</SelectItem>
+                                   </SelectContent>
+                               </Select>
                            </div>
 
                            {/* Customer Select Option */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Customer *</label>
-                               <select 
-                                   value={clientName} 
-                                   onChange={e => setClientName(e.target.value)}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white font-semibold"
-                               >
-                                   <option value="">-- Choose Customer --</option>
-                                   {availableCustomers.map(cust => (
-                                       <option key={cust.id} value={cust.name}>{cust.name}</option>
-                                   ))}
-                                   {availableCustomers.length === 0 && (
-                                       <option disabled>No customers registered. Create one first!</option>
-                                   )}
-                               </select>
+                               <Select value={clientName} onValueChange={val => setClientName(val)}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue placeholder="-- Choose Customer --" />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       {availableCustomers.map(cust => (
+                                           <SelectItem key={cust.id} value={cust.name}>{cust.name}</SelectItem>
+                                       ))}
+                                   </SelectContent>
+                               </Select>
                            </div>
 
                            {/* Valid Till */}
@@ -229,16 +229,17 @@ const QuotationDetailView: React.FC<QuotationDetailViewProps> = ({ quotation, on
                            {/* Status Selector */}
                            <div>
                                <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Status *</label>
-                               <select 
-                                   value={status} 
-                                   onChange={e => setStatus(e.target.value as Quotation['status'])}
-                                   className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white"
-                               >
-                                   <option value="Draft">Draft</option>
-                                   <option value="Open">Open</option>
-                                   <option value="Cancelled">Cancelled</option>
-                                   <option value="Expired">Expired</option>
-                               </select>
+                               <Select value={status} onValueChange={val => setStatus(val as Quotation['status'])}>
+                                   <SelectTrigger className="w-full p-2">
+                                       <SelectValue />
+                                   </SelectTrigger>
+                                   <SelectContent>
+                                       <SelectItem value="Draft">Draft</SelectItem>
+                                       <SelectItem value="Open">Open</SelectItem>
+                                       <SelectItem value="Cancelled">Cancelled</SelectItem>
+                                       <SelectItem value="Expired">Expired</SelectItem>
+                                   </SelectContent>
+                               </Select>
                            </div>
                         </div>
 

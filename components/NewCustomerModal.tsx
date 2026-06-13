@@ -103,30 +103,32 @@ const NewCustomerModal: React.FC<NewCustomerModalProps> = ({ onClose, onEditFull
                             <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">
                                 Customer Group
                             </label>
-                            <select 
-                                value={group} 
-                                onChange={(e) => setGroup(e.target.value)}
-                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="Corporate">Corporate</option>
-                                <option value="Commercial">Commercial</option>
-                                <option value="Individual">Individual</option>
-                                <option value="Government">Government</option>
-                                <option value="All">All</option>
-                            </select>
+                            <Select value={group} onValueChange={val => setGroup(val)}>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Corporate">Corporate</SelectItem>
+                                    <SelectItem value="Commercial">Commercial</SelectItem>
+                                    <SelectItem value="Individual">Individual</SelectItem>
+                                    <SelectItem value="Government">Government</SelectItem>
+                                    <SelectItem value="All">All</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <div>
                             <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">
                                 Status
                             </label>
-                            <select 
-                                value={status} 
-                                onChange={(e) => setStatus(e.target.value as 'Enabled' | 'Disabled')}
-                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="Enabled">Enabled</option>
-                                <option value="Disabled">Disabled</option>
-                            </select>
+                            <Select value={status} onValueChange={val => setStatus(val as 'Enabled' | 'Disabled')}>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Enabled">Enabled</SelectItem>
+                                    <SelectItem value="Disabled">Disabled</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                     </div>
                     

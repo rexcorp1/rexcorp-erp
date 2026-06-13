@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { ShippingInstruction } from '../types';
 import { SHIPPING_INSTRUCTIONS_DATA, SHIPPING_INSTRUCTION_TEMPLATE_HTML, XIcon, DotsHorizontalIcon, RefreshIcon, PrinterIcon, ArrowUpRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, FileCodeIcon, ChevronDownIcon, AlignLeftIcon, AlignRightIcon } from '../constants';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface ShippingInstructionDetailViewProps {
     shippingInstruction: ShippingInstruction | null; // Null for new
@@ -295,7 +297,19 @@ const ShippingInstructionDetailView: React.FC<ShippingInstructionDetailViewProps
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <FormField label="SI #"><input type="text" value={siData.shippingInstructionNumber} onChange={e => handleInputChange('shippingInstructionNumber', e.target.value)} className="w-full p-2 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"/></FormField>
-                    <FormField label="Status"><select value={siData.status} onChange={e => handleInputChange('status', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Draft</option><option>Sent</option><option>Confirmed</option><option>Cancelled</option></select></FormField>
+                    <FormField label="Status">
+                        <Select value={siData.status} onValueChange={val => handleInputChange('status', val)}>
+                            <SelectTrigger className="w-full p-2">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Draft">Draft</SelectItem>
+                                <SelectItem value="Sent">Sent</SelectItem>
+                                <SelectItem value="Confirmed">Confirmed</SelectItem>
+                                <SelectItem value="Cancelled">Cancelled</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </FormField>
                     <FormField label="Date"><input type="date" value={siData.shippingInstructionDate} onChange={e => handleInputChange('shippingInstructionDate', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"/></FormField>
                 </div>
             </div>
@@ -414,9 +428,9 @@ const ShippingInstructionDetailView: React.FC<ShippingInstructionDetailViewProps
                                     <FormField label="Language"><input value="en" className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-sm" readOnly /></FormField>
                                     <FormField label="Letter Head"><input value="REXCorp." className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-sm" readOnly/></FormField>
                                     <div className="space-y-2 pt-4 border-t dark:border-gray-700 mt-2">
-                                        <label className="flex items-center space-x-2"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Include Stamp Placeholder</span></label>
-                                        <label className="flex items-center space-x-2"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Compact Party Details</span></label>
-                                        <label className="flex items-center space-x-2"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Show Linked Documents</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /> <span className="text-sm text-gray-700 dark:text-gray-300">Include Stamp Placeholder</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /> <span className="text-sm text-gray-700 dark:text-gray-300">Compact Party Details</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /> <span className="text-sm text-gray-700 dark:text-gray-300">Show Linked Documents</span></label>
                                     </div>
                                 </div>
                             </aside>

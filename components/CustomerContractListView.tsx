@@ -15,6 +15,9 @@ import {
     AlignRightIcon,
 } from '../constants';
 import type { CustomerContract } from '../types';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface CustomerContractListViewProps {
     contracts: CustomerContract[];
@@ -35,12 +38,11 @@ const CustomerContractListView: React.FC<CustomerContractListViewProps> = ({
     const [searchQuery, setSearchQuery] = useState('');
 
     const getStatusBadge = (status: CustomerContract['status']) => {
-        const baseClasses = "text-xs font-medium me-2 px-2.5 py-0.5 rounded-full";
         switch (status) {
-            case 'Active': return <span className={`bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300 ${baseClasses}`}>{status}</span>;
-            case 'Terminated':
-            case 'Expired': return <span className={`bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 ${baseClasses}`}>{status}</span>;
-            case 'Draft': return <span className={`bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300 ${baseClasses}`}>{status}</span>;
+            case 'Active': return <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">{status}</Badge>;
+            case 'Terminated': return <Badge className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">{status}</Badge>;
+            case 'Expired': return <Badge className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">{status}</Badge>;
+            case 'Draft': return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">{status}</Badge>;
             default: return null;
         }
     };
@@ -63,9 +65,23 @@ const CustomerContractListView: React.FC<CustomerContractListViewProps> = ({
                         <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Filter By</h3>
                         <div className="space-y-2">
                             <label htmlFor="customer-name" className="sr-only">Customer Name</label>
-                            <select id="customer-name" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Customer Name</option></select>
+                            <Select disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Customer Name" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
                             <label htmlFor="status" className="sr-only">Status</label>
-                            <select id="status" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Status</option></select>
+                            <Select disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
                          <div className="space-y-2 border-t pt-4 dark:border-gray-600">
@@ -149,7 +165,7 @@ const CustomerContractListView: React.FC<CustomerContractListViewProps> = ({
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
                                 <tr>
-                                    <th scope="col" className="p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
+                                    <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Contract ID</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Customer Name</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Status</th>
@@ -162,7 +178,7 @@ const CustomerContractListView: React.FC<CustomerContractListViewProps> = ({
                             <tbody>
                                 {filteredContracts.map(contract => (
                                     <tr key={contract.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
-                                        <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
+                                        <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                                             <button onClick={() => onContractSelect(contract)} className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
                                                 {contract.contractId}

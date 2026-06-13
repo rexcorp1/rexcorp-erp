@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { PackingList, PackingListItem, Customer } from '../types';
 import { PACKING_LISTS_DATA, CUSTOMERS_DATA, PACKING_LIST_TEMPLATE_HTML, XIcon, DotsHorizontalIcon, RefreshIcon, PrinterIcon, ArrowUpRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, FileCodeIcon, ChevronDownIcon, AlignLeftIcon, AlignRightIcon } from '../constants';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface PackingListDetailViewProps {
     packingList: PackingList | null; // Null for new
@@ -395,8 +397,19 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
                 <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4">Document Status</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <FormField label="Packing List #"><input type="text" value={packingListData.packingListNumber} onChange={e => handleInputChange('packingListNumber', e.target.value)} className="w-full p-2 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 font-mono"/></FormField>
-                    <FormField label="Status"><select value={packingListData.status} onChange={e => handleInputChange('status', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Draft</option><option>Confirmed</option><option>Cancelled</option></select></FormField>
+                    <FormField label="Packing List #"><input type="text" value={packingListData.packingListNumber} onChange={e => handleInputChange('packingListNumber', e.target.value)} className="w-full p-2 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"/></FormField>
+                    <FormField label="Status">
+                        <Select value={packingListData.status} onValueChange={val => handleInputChange('status', val)}>
+                            <SelectTrigger className="w-full p-2">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Draft">Draft</SelectItem>
+                                <SelectItem value="Confirmed">Confirmed</SelectItem>
+                                <SelectItem value="Cancelled">Cancelled</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </FormField>
                     <FormField label="Date"><input type="date" value={packingListData.packingListDate} onChange={e => handleInputChange('packingListDate', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"/></FormField>
                 </div>
             </div>
@@ -409,7 +422,22 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                     <FormField label="Contract #"><input type="text" value={packingListData.contractNumber} onChange={e => handleInputChange('contractNumber', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="-"/></FormField>
                     <FormField label="Invoice #"><input type="text" value={packingListData.invoiceNumber} onChange={e => handleInputChange('invoiceNumber', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="IN..."/></FormField>
                     <FormField label="Customer Contact"><input type="text" value={packingListData.customerContact} onChange={e => handleInputChange('customerContact', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Mr. Zhang"/></FormField>
-                    <FormField label="Qty Unit"><select value={packingListData.quantityUnit || 'Kg'} onChange={e => handleInputChange('quantityUnit', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option value="Kg">Kg</option><option value="Pcs">Pcs</option><option value="g">g</option><option value="Box">Box</option><option value="Ltr">Ltr</option><option value="Ctn">Ctn</option><option value="Unit">Unit</option></select></FormField>
+                    <FormField label="Qty Unit">
+                        <Select value={packingListData.quantityUnit || 'Kg'} onValueChange={val => handleInputChange('quantityUnit', val)}>
+                            <SelectTrigger className="w-full p-2">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Kg">Kg</SelectItem>
+                                <SelectItem value="Pcs">Pcs</SelectItem>
+                                <SelectItem value="g">g</SelectItem>
+                                <SelectItem value="Box">Box</SelectItem>
+                                <SelectItem value="Ltr">Ltr</SelectItem>
+                                <SelectItem value="Ctn">Ctn</SelectItem>
+                                <SelectItem value="Unit">Unit</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </FormField>
                 </div>
             </div>
 
@@ -422,10 +450,14 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                             <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100">Bill To</h3>
                         </div>
                         <FormField label="Customer Select">
-                            <select value={packingListData.billToId} onChange={e => handleCustomerChange(e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white font-medium">
-                                <option value="">Select Customer</option>
-                                {customers.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                            </select>
+                            <Select value={packingListData.billToId || ''} onValueChange={val => handleCustomerChange(val)}>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Select Customer" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {customers.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+                                </SelectContent>
+                            </Select>
                         </FormField>
                         <FormField label="Name"><input value={packingListData.billToName} onChange={e => handleInputChange('billToName', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField>
                         <FormField label="Address"><input value={packingListData.billToAddress1} onChange={e => handleInputChange('billToAddress1', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField>
@@ -471,19 +503,20 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                     <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Line Items</h3>
                     <div className="flex items-center gap-2 bg-red-50 dark:bg-red-950/30 px-3 py-1.5 rounded-lg border border-red-100 dark:border-red-900/50">
                         <span className="text-xs font-bold text-red-700 dark:text-red-400 uppercase tracking-wider">Quantity Unit (UOM):</span>
-                        <select 
-                            value={packingListData.quantityUnit || 'Kg'} 
-                            onChange={e => handleInputChange('quantityUnit', e.target.value)} 
-                            className="p-1 text-sm border border-red-200 dark:border-red-900 rounded-md bg-white dark:bg-gray-800 dark:text-white font-semibold focus:outline-none focus:ring-1 focus:ring-red-500"
-                        >
-                            <option value="Kg">Kg</option>
-                            <option value="Pcs">Pcs</option>
-                            <option value="g">g</option>
-                            <option value="Box">Box</option>
-                            <option value="Ltr">Ltr</option>
-                            <option value="Ctn">Ctn</option>
-                            <option value="Unit">Unit</option>
-                        </select>
+                        <Select value={packingListData.quantityUnit || 'Kg'} onValueChange={val => handleInputChange('quantityUnit', val)}>
+                            <SelectTrigger className="p-1 text-sm w-40">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Kg">Kg</SelectItem>
+                                <SelectItem value="Pcs">Pcs</SelectItem>
+                                <SelectItem value="g">g</SelectItem>
+                                <SelectItem value="Box">Box</SelectItem>
+                                <SelectItem value="Ltr">Ltr</SelectItem>
+                                <SelectItem value="Ctn">Ctn</SelectItem>
+                                <SelectItem value="Unit">Unit</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                 </div>
                 <table className="w-full text-sm">
@@ -499,7 +532,7 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                     <tbody>
                         {packingListData.items.map(item => (
                             <tr key={item.id} className="border-b dark:border-gray-700">
-                                <td className="p-1"><input value={item.itemNumber} onChange={e => handleItemChange(item.id, 'itemNumber', e.target.value)} className="w-full p-1.5 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white font-mono"/></td>
+                                <td className="p-1"><input value={item.itemNumber} onChange={e => handleItemChange(item.id, 'itemNumber', e.target.value)} className="w-full p-1.5 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"/></td>
                                 <td className="p-1"><input value={item.description} onChange={e => handleItemChange(item.id, 'description', e.target.value)} className="w-full p-1.5 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="e.g. Bucephalandra sp"/></td>
                                 <td className="p-1"><input value={item.packageText || ''} onChange={e => handleItemChange(item.id, 'packageText', e.target.value)} className="w-full p-1.5 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="e.g. 2 Box"/></td>
                                 <td className="p-1"><input type="number" value={item.quantity !== undefined ? item.quantity : ''} onChange={e => { const val = e.target.value; handleItemChange(item.id, 'quantity', val === '' ? '' : parseFloat(val)); }} className="w-full p-1.5 border rounded-md text-right dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="e.g. 1500"/></td>
@@ -510,8 +543,8 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                     <tfoot>
                         <tr className="font-semibold">
                             <td colSpan={2} className="p-2 text-right">Total:</td>
-                            <td className="p-2 font-mono">{packingListData.totalPackageText || ''}</td>
-                            <td className="p-2 text-right font-mono text-base font-bold text-red-600 dark:text-red-400">{(packingListData.totalQuantity || 0).toLocaleString()}</td>
+                            <td className="p-2">{packingListData.totalPackageText || ''}</td>
+                            <td className="p-2 text-right text-base font-bold text-red-600 dark:text-red-400">{(packingListData.totalQuantity || 0).toLocaleString()}</td>
                             <td></td>
                         </tr>
                     </tfoot>
@@ -614,9 +647,9 @@ const PackingListDetailView: React.FC<PackingListDetailViewProps> = ({ packingLi
                                     <FormField label="Language"><input value="en" className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-sm" readOnly /></FormField>
                                     <FormField label="Letter Head"><input value="REXCorp." className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-sm" readOnly/></FormField>
                                     <div className="space-y-2 pt-4 border-t mt-2 dark:border-gray-700">
-                                        <label className="flex items-center space-x-2"><input type="checkbox" defaultChecked className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Show Item # Column</span></label>
-                                        <label className="flex items-center space-x-2"><input type="checkbox" defaultChecked className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Include Weight Totals</span></label>
-                                        <label className="flex items-center space-x-2"><input type="checkbox" defaultChecked className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Show Comments Section</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox defaultChecked className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /> <span className="text-sm text-gray-700 dark:text-gray-300">Show Item # Column</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox defaultChecked className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /> <span className="text-sm text-gray-700 dark:text-gray-300">Include Weight Totals</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox defaultChecked className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /> <span className="text-sm text-gray-700 dark:text-gray-300">Show Comments Section</span></label>
                                     </div>
                                 </div>
                             </aside>

@@ -7,6 +7,9 @@ import {
     AlignRightIcon,
 } from '../constants';
 import type { ShippingInstruction } from '../types';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface ShippingInstructionListViewProps {
     shippingInstructions: ShippingInstruction[];
@@ -19,12 +22,11 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
     const [isHovered, setIsHovered] = useState(false);
 
     const getStatusBadge = (status: ShippingInstruction['status']) => {
-        const baseClasses = "text-xs font-medium me-2 px-2.5 py-0.5 rounded-full";
         switch (status) {
-            case 'Confirmed': return <span className={`bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 ${baseClasses}`}>{status}</span>;
-            case 'Cancelled': return <span className={`bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 ${baseClasses}`}>{status}</span>;
-            case 'Draft': return <span className={`bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300 ${baseClasses}`}>{status}</span>;
-            case 'Sent': return <span className={`bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 ${baseClasses}`}>{status}</span>;
+            case 'Confirmed': return <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">{status}</Badge>;
+            case 'Cancelled': return <Badge className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">{status}</Badge>;
+            case 'Draft': return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">{status}</Badge>;
+            case 'Sent': return <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">{status}</Badge>;
             default: return null;
         }
     };
@@ -38,9 +40,23 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
                         <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Filter By</h3>
                         <div className="space-y-2">
                             <label htmlFor="forwarder-name" className="sr-only">Forwarder</label>
-                            <select id="forwarder-name" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Forwarder</option></select>
+                            <Select disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Forwarder" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
                             <label htmlFor="status" className="sr-only">Status</label>
-                            <select id="status" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Status</option></select>
+                            <Select disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
                     </div>
@@ -81,7 +97,7 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
                                 <tr>
-                                    <th scope="col" className="p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
+                                    <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
                                     <th scope="col" className="px-6 py-3 font-semibold">SI #</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Date</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Forwarder</th>
@@ -92,7 +108,7 @@ const ShippingInstructionListView: React.FC<ShippingInstructionListViewProps> = 
                             <tbody>
                                 {shippingInstructions.map(si => (
                                     <tr key={si.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
-                                        <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
+                                        <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white whitespace-nowrap">
                                             <button onClick={() => onSiSelect(si.id)} className="text-blue-600 hover:underline dark:text-blue-400">
                                                 {si.shippingInstructionNumber}

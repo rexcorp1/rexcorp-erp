@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { 
     ChevronDownIcon,
     ArrowLeftIcon
 } from '../constants';
 import type { Customer } from '../types';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface NewCustomerViewProps {
     onBack: () => void;
@@ -182,28 +184,30 @@ const NewCustomerView: React.FC<NewCustomerViewProps> = ({ onBack, onSave }) => 
                                     </div>
                                     <div>
                                         <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Customer Group</label>
-                                        <select 
-                                            value={group} 
-                                            onChange={(e) => setGroup(e.target.value)}
-                                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        >
-                                            <option value="Corporate">Corporate</option>
-                                            <option value="Commercial">Commercial</option>
-                                            <option value="Individual">Individual</option>
-                                            <option value="Government">Government</option>
-                                            <option value="All">All</option>
-                                        </select>
+                                        <Select value={group} onValueChange={val => setGroup(val)}>
+                                            <SelectTrigger className="w-full p-2">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Corporate">Corporate</SelectItem>
+                                                <SelectItem value="Commercial">Commercial</SelectItem>
+                                                <SelectItem value="Individual">Individual</SelectItem>
+                                                <SelectItem value="Government">Government</SelectItem>
+                                                <SelectItem value="All">All</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
                                     <div>
                                         <label className="text-sm text-gray-600 dark:text-gray-300 mb-1 block">Status</label>
-                                        <select 
-                                            value={status} 
-                                            onChange={(e) => setStatus(e.target.value as 'Enabled' | 'Disabled')}
-                                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-2 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        >
-                                            <option value="Enabled">Enabled</option>
-                                            <option value="Disabled">Disabled</option>
-                                        </select>
+                                        <Select value={status} onValueChange={val => setStatus(val as 'Enabled' | 'Disabled')}>
+                                            <SelectTrigger className="w-full p-2">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Enabled">Enabled</SelectItem>
+                                                <SelectItem value="Disabled">Disabled</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
                                 </div>
 
@@ -225,10 +229,10 @@ const NewCustomerView: React.FC<NewCustomerViewProps> = ({ onBack, onSave }) => 
                                      <button type="button" className="flex items-center text-sm font-semibold text-gray-800 dark:text-gray-200">
                                         Internal Customer <ChevronDownIcon className="h-4 w-4 ml-1"/>
                                      </button>
-                                      <div className="flex items-center space-x-2 pl-2">
-                                        <input type="checkbox" id="is-internal" className="h-4 w-4 rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" />
-                                        <label htmlFor="is-internal" className="text-sm text-gray-700 dark:text-gray-300">Is Internal Customer</label>
-                                      </div>
+                                                                            <div className="flex items-center space-x-2 pl-2">
+                                                                                <Checkbox id="is-internal" className="h-4 w-4 rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" />
+                                                                                <label htmlFor="is-internal" className="text-sm text-gray-700 dark:text-gray-300">Is Internal Customer</label>
+                                                                            </div>
                                 </div>
 
                                 <div className="mt-4 space-y-4 border-t dark:border-gray-700 pt-6">

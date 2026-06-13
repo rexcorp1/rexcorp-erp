@@ -53,13 +53,12 @@ const ShipmentDetailView: React.FC<ShipmentDetailViewProps> = ({ shipment, onBac
     const currentStatusIndex = timelineStatuses.indexOf(shipment.status);
 
     const getStatusBadge = (status: Shipment['status']) => {
-        const baseClasses = "text-base font-medium me-2 px-3 py-1 rounded-full";
         switch (status) {
-            case 'In Transit': return <span className={`bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 ${baseClasses}`}>{status}</span>;
-            case 'Customs Clearance': return <span className={`bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 ${baseClasses}`}>{status}</span>;
-            case 'Delivered': return <span className={`bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 ${baseClasses}`}>{status}</span>;
-            case 'Booked': return <span className={`bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 ${baseClasses}`}>{status}</span>;
-            case 'On Hold': return <span className={`bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 ${baseClasses}`}>{status}</span>;
+            case 'In Transit': return <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">{status}</Badge>;
+            case 'Customs Clearance': return <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300">{status}</Badge>;
+            case 'Delivered': return <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">{status}</Badge>;
+            case 'Booked': return <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">{status}</Badge>;
+            case 'On Hold': return <Badge className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">{status}</Badge>;
             default: return null;
         }
     };

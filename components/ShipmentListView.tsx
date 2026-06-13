@@ -15,6 +15,9 @@ import {
     AlignRightIcon,
 } from '../constants';
 import type { Shipment } from '../types';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { SHIPMENTS_DATA } from '../constants';
 import { Plane } from 'lucide-react';
 
@@ -26,15 +29,16 @@ interface ShipmentListViewProps {
 
 const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, isSubPanelOpen, toggleSubPanel }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [statusFilter, setStatusFilter] = useState('');
+    const [modeFilter, setModeFilter] = useState('');
     
     const getStatusBadge = (status: Shipment['status']) => {
-        const baseClasses = "text-xs font-medium me-2 px-2.5 py-0.5 rounded-full whitespace-nowrap";
         switch (status) {
-            case 'In Transit': return <span className={`bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 ${baseClasses}`}>{status}</span>;
-            case 'Customs Clearance': return <span className={`bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 ${baseClasses}`}>{status}</span>;
-            case 'Delivered': return <span className={`bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 ${baseClasses}`}>{status}</span>;
-            case 'Booked': return <span className={`bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 ${baseClasses}`}>{status}</span>;
-            case 'On Hold': return <span className={`bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 ${baseClasses}`}>{status}</span>;
+            case 'In Transit': return <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">{status}</Badge>;
+            case 'Customs Clearance': return <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300">{status}</Badge>;
+            case 'Delivered': return <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">{status}</Badge>;
+            case 'Booked': return <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">{status}</Badge>;
+            case 'On Hold': return <Badge className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">{status}</Badge>;
             default: return null;
         }
     };
@@ -56,19 +60,33 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                         <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Filter By</h3>
                         <div className="space-y-2">
                             <label htmlFor="status-filter" className="sr-only">Status</label>
-                            <select id="status-filter" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <option>Status</option>
-                                <option>In Transit</option>
-                                <option>Customs Clearance</option>
-                                <option>Delivered</option>
-                            </select>
+                            <Select value={statusFilter} onValueChange={val => setStatusFilter(val)} disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
+                                    <SelectItem value="In Transit">In Transit</SelectItem>
+                                    <SelectItem value="Customs Clearance">Customs Clearance</SelectItem>
+                                    <SelectItem value="Delivered">Delivered</SelectItem>
+                                </SelectContent>
+                            </Select>
                             <label htmlFor="mode-filter" className="sr-only">Mode</label>
-                            <select id="mode-filter" className="w-full rounded-md border-gray-300 p-2 text-sm shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <option>Mode of Transport</option>
-                                <option>Sea</option>
-                                <option>Air</option>
-                                <option>Land</option>
-                            </select>
+                            <Select value={modeFilter} onValueChange={val => setModeFilter(val)} disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Mode of Transport" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
+                                    <SelectItem value="Sea">Sea</SelectItem>
+                                    <SelectItem value="Air">Air</SelectItem>
+                                    <SelectItem value="Land">Land</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
                     </div>
@@ -126,7 +144,7 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
                                 <tr>
-                                    <th scope="col" className="p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
+                                    <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Shipment ID</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Client</th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Route</th>
@@ -140,7 +158,7 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                             <tbody>
                                 {SHIPMENTS_DATA.map(shipment => (
                                     <tr key={shipment.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
-                                        <td className="w-4 p-4"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
+                                        <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                                             <button onClick={() => onShipmentSelect(shipment.id)} className="text-blue-600 hover:underline dark:text-blue-400">
                                                 {shipment.shipmentId}

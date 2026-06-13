@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import type { Invoice, InvoiceItem } from '../types';
 import { INVOICES_DATA, CUSTOMERS_DATA, XIcon, DotsHorizontalIcon, RefreshIcon, PrinterIcon, ArrowUpRightIcon, MenuIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, FileCodeIcon, ChevronDownIcon } from '../constants';
 
@@ -563,15 +565,42 @@ const ClientInvoiceDetailView: React.FC<ClientInvoiceDetailViewProps> = ({ invoi
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <FormField label="Invoice #"><input type="text" value={invoiceData.invoiceNumber} onChange={e => handleInputChange('invoiceNumber', e.target.value)} className="w-full p-2 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"/></FormField>
-                    <FormField label="Status"><select value={invoiceData.status} onChange={e => handleInputChange('status', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>Draft</option><option>Unpaid</option><option>Paid</option><option>Overdue</option></select></FormField>
+                    <FormField label="Status">
+                        <Select value={invoiceData.status} onValueChange={val => handleInputChange('status', val)}>
+                            <SelectTrigger className="w-full p-2">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Draft">Draft</SelectItem>
+                                <SelectItem value="Unpaid">Unpaid</SelectItem>
+                                <SelectItem value="Paid">Paid</SelectItem>
+                                <SelectItem value="Overdue">Overdue</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </FormField>
                     <FormField label="Date"><input type="date" value={invoiceData.invoiceDate} onChange={e => handleInputChange('invoiceDate', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"/></FormField>
                     <FormField label="Contract #"><input type="text" value={invoiceData.contractNumber} onChange={e => handleInputChange('contractNumber', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"/></FormField>
-                    <FormField label="Qty Unit"><select value={invoiceData.quantityUnit || 'Kg'} onChange={e => handleInputChange('quantityUnit', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option value="Kg">Kg</option><option value="Pcs">Pcs</option><option value="g">g</option><option value="Box">Box</option><option value="Ltr">Ltr</option><option value="Ctn">Ctn</option><option value="Unit">Unit</option></select></FormField>
+                    <FormField label="Qty Unit">
+                        <Select value={invoiceData.quantityUnit || 'Kg'} onValueChange={val => handleInputChange('quantityUnit', val)}>
+                            <SelectTrigger className="w-full p-2">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Kg">Kg</SelectItem>
+                                <SelectItem value="Pcs">Pcs</SelectItem>
+                                <SelectItem value="g">g</SelectItem>
+                                <SelectItem value="Box">Box</SelectItem>
+                                <SelectItem value="Ltr">Ltr</SelectItem>
+                                <SelectItem value="Ctn">Ctn</SelectItem>
+                                <SelectItem value="Unit">Unit</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </FormField>
                 </div>
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-3"><h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100">Billed To</h3><FormField label="Customer"><select value={invoiceData.billedToId} onChange={e => handleCustomerChange(e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white font-medium"><option value="">Select Customer</option>{customers.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></FormField><FormField label="Address"><input value={invoiceData.billedToAddress1} onChange={e => handleInputChange('billedToAddress1', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><div className="grid grid-cols-2 gap-4"><FormField label="Country"><input value={invoiceData.billedToCountry} onChange={e => handleInputChange('billedToCountry', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><FormField label="Phone"><input value={invoiceData.billedToPhone} onChange={e => handleInputChange('billedToPhone', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField></div></div>
+                    <div className="space-y-3"><h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100">Billed To</h3><FormField label="Customer"><Select value={invoiceData.billedToId || ''} onValueChange={val => handleCustomerChange(val)}><SelectTrigger className="w-full p-2"><SelectValue placeholder="Select Customer" /></SelectTrigger><SelectContent><SelectItem value="">Select Customer</SelectItem>{customers.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}</SelectContent></Select></FormField><FormField label="Address"><input value={invoiceData.billedToAddress1} onChange={e => handleInputChange('billedToAddress1', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><div className="grid grid-cols-2 gap-4"><FormField label="Country"><input value={invoiceData.billedToCountry} onChange={e => handleInputChange('billedToCountry', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><FormField label="Phone"><input value={invoiceData.billedToPhone} onChange={e => handleInputChange('billedToPhone', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField></div></div>
                     <div className="space-y-3"><h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100">Trade Details</h3><FormField label="Origin"><input value={invoiceData.origin} onChange={e => handleInputChange('origin', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><FormField label="Destination"><input value={invoiceData.destination} onChange={e => handleInputChange('destination', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><FormField label="Terms of Trade"><input value={invoiceData.termsOfTrade} onChange={e => handleInputChange('termsOfTrade', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField><FormField label="Payment Terms"><input value={invoiceData.payment} onChange={e => handleInputChange('payment', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white" /></FormField></div>
                 </div>
             </div>
@@ -679,9 +708,9 @@ const ClientInvoiceDetailView: React.FC<ClientInvoiceDetailViewProps> = ({ invoi
                                     <FormField label="Language"><input value="en" className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-sm" readOnly /></FormField>
                                     <FormField label="Letter Head"><input value="Gadget House" className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-sm" readOnly/></FormField>
                                     <div className="space-y-2 pt-4 border-t mt-2 dark:border-gray-700">
-                                        <label className="flex items-center space-x-2"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Compact Item Print</span></label>
-                                        <label className="flex items-center space-x-2"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Print UOM after Quantity</span></label>
-                                        <label className="flex items-center space-x-2"><input type="checkbox" className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Print taxes with zero amount</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Compact Item Print</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Print UOM after Quantity</span></label>
+                                        <label className="flex items-center space-x-2"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/> <span className="text-sm text-gray-700 dark:text-gray-300">Print taxes with zero amount</span></label>
                                     </div>
                                 </div>
                             </aside>

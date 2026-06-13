@@ -5,6 +5,7 @@ import ClientInvoiceDetailView from './ClientInvoiceDetailView';
 import ReceivablesView from './ReceivablesView';
 import PayablesView from './PayablesView';
 import { Landmark, TrendingUp, LineChart, Plus, Trash2, Edit2, Wallet, ArrowUpRight, ArrowDownLeft, FileText, CheckCircle2 } from 'lucide-react';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface CostAccrual {
     id: string;
@@ -359,17 +360,17 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                             </FormField>
 
                             <FormField label="Accrual Category">
-                                <select 
-                                    className="w-full p-2 border border-gray-300 rounded-md bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-black dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                                    value={accrualForm.expenseCategory || 'Ocean Freight'}
-                                    onChange={e => setAccrualForm({...accrualForm, expenseCategory: e.target.value as any})}
-                                    required
-                                >
-                                    <option value="Ocean Freight">Ocean Freight</option>
-                                    <option value="Port Handling">Port Handling (THC, Stevedoring)</option>
-                                    <option value="Trucking Haulage">Trucking & Land Haulage</option>
-                                    <option value="Customs PPJK">Customs Clearance / PPJK Agents</option>
-                                </select>
+                                <Select value={accrualForm.expenseCategory || 'Ocean Freight'} onValueChange={val => setAccrualForm({...accrualForm, expenseCategory: val as any})}>
+                                    <SelectTrigger className="w-full p-2">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="Ocean Freight">Ocean Freight</SelectItem>
+                                        <SelectItem value="Port Handling">Port Handling (THC, Stevedoring)</SelectItem>
+                                        <SelectItem value="Trucking Haulage">Trucking & Land Haulage</SelectItem>
+                                        <SelectItem value="Customs PPJK">Customs Clearance / PPJK Agents</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </FormField>
 
                             <FormField label="Estimated Cost Value (USD/IDR Equiv Amount)">
@@ -546,29 +547,29 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                             </FormField>
 
                             <FormField label="DEBIT Account Code (Target Influx)">
-                                <select 
-                                    className="w-full p-2 border border-gray-300 rounded-md bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-black dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                                    value={txForm.debitAccount || '1010'}
-                                    onChange={e => setTxForm({...txForm, debitAccount: e.target.value})}
-                                    required
-                                >
-                                    {ledgerAccounts.map(acc => (
-                                        <option key={acc.code} value={acc.code}>{acc.code} - {acc.name} ({acc.type})</option>
-                                    ))}
-                                </select>
+                                <Select value={txForm.debitAccount || '1010'} onValueChange={val => setTxForm({...txForm, debitAccount: val})}>
+                                    <SelectTrigger className="w-full p-2">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {ledgerAccounts.map(acc => (
+                                            <SelectItem key={acc.code} value={acc.code}>{acc.code} - {acc.name} ({acc.type})</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </FormField>
 
                             <FormField label="CREDIT Account Code (Source Outflux)">
-                                <select 
-                                    className="w-full p-2 border border-gray-300 rounded-md bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-black dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                                    value={txForm.creditAccount || '4110'}
-                                    onChange={e => setTxForm({...txForm, creditAccount: e.target.value})}
-                                    required
-                                >
-                                    {ledgerAccounts.map(acc => (
-                                        <option key={acc.code} value={acc.code}>{acc.code} - {acc.name} ({acc.type})</option>
-                                    ))}
-                                </select>
+                                <Select value={txForm.creditAccount || '4110'} onValueChange={val => setTxForm({...txForm, creditAccount: val})}>
+                                    <SelectTrigger className="w-full p-2">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {ledgerAccounts.map(acc => (
+                                            <SelectItem key={acc.code} value={acc.code}>{acc.code} - {acc.name} ({acc.type})</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </FormField>
 
                             <FormField label="Voucher Amount (IDR)">

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import type { Breadcrumb } from '../types';
 import { UserCheck, ShieldCheck, Mail, Phone, MapPin, Search, Plus, Trash2, Edit2, Coins, FileCheck, CheckCircle, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface Partner {
     id: string;
@@ -300,9 +304,9 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Company Legal Name</label>
-                                <input 
+                                <Input
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1"
                                     value={partnerForm.companyName || ''}
                                     onChange={e => setPartnerForm({...partnerForm, companyName: e.target.value})}
                                     placeholder="e.g. PT Samudera Logistik Nusantara"
@@ -312,24 +316,24 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Operations Segment type</label>
-                                <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
-                                    value={partnerForm.type || 'Trucking'}
-                                    onChange={e => setPartnerForm({...partnerForm, type: e.target.value as any})}
-                                    required
-                                >
-                                    <option value="Trucking">Trucking & Land Haulage</option>
-                                    <option value="Shipping Line">Shipping Ocean Carrier Line</option>
-                                    <option value="Customs Broker">Customs Clearance Broker (PPJK)</option>
-                                    <option value="Deport Agency">Depot Yard & Storage Agency</option>
-                                </select>
+                                <Select value={partnerForm.type || 'Trucking'} onValueChange={val => setPartnerForm({...partnerForm, type: val as any})}>
+                                    <SelectTrigger className="mt-1 w-full">
+                                        <SelectValue placeholder="Select operations segment" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="Trucking">Trucking & Land Haulage</SelectItem>
+                                        <SelectItem value="Shipping Line">Shipping Ocean Carrier Line</SelectItem>
+                                        <SelectItem value="Customs Broker">Customs Clearance Broker (PPJK)</SelectItem>
+                                        <SelectItem value="Deport Agency">Depot Yard & Storage Agency</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Key Contact Person</label>
-                                <input 
+                                <Input
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1"
                                     value={partnerForm.contactPerson || ''}
                                     onChange={e => setPartnerForm({...partnerForm, contactPerson: e.target.value})}
                                     placeholder="e.g. Hendra Santoso"
@@ -339,9 +343,9 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Contact Email</label>
-                                <input 
+                                <Input
                                     type="email"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1"
                                     value={partnerForm.email || ''}
                                     onChange={e => setPartnerForm({...partnerForm, email: e.target.value})}
                                     placeholder="e.g. contact@samudera.com"
@@ -351,9 +355,9 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Phone Number</label>
-                                <input 
+                                <Input
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1"
                                     value={partnerForm.phone || ''}
                                     onChange={e => setPartnerForm({...partnerForm, phone: e.target.value})}
                                     required
@@ -362,10 +366,10 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
 
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Partner KPI Rating Score (0.0 - 5.0)</label>
-                                <input 
+                                <Input
                                     type="number"
                                     step="0.1"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                                    className="mt-1"
                                     value={partnerForm.rating || 5.0}
                                     onChange={e => setPartnerForm({...partnerForm, rating: Number(e.target.value)})}
                                 />
@@ -373,19 +377,8 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                         </div>
 
                         <div className="flex gap-3 justify-end border-t pt-4 dark:border-gray-700">
-                            <button 
-                                type="button"
-                                onClick={() => { setIsCreatingPartner(false); setIsEditingPartner(false); }}
-                                className="px-4 py-2 border rounded text-xs tracking-wider uppercase font-mono font-medium hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300"
-                            >
-                                Cancel
-                            </button>
-                            <button 
-                                type="submit"
-                                className="px-4 py-2 bg-blue-600 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
-                            >
-                                Save Partner Entry
-                            </button>
+                            <Button type="button" variant="outline" onClick={() => { setIsCreatingPartner(false); setIsEditingPartner(false); }} className="px-4 py-2 text-xs uppercase">Cancel</Button>
+                            <Button type="submit" className="px-4 py-2 text-xs uppercase">Save Partner Entry</Button>
                         </div>
                     </form>
                 </div>
@@ -396,21 +389,18 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
             <div className="space-y-6">
                 <div className="flex justify-between items-center flex-wrap gap-4 bg-white p-4 rounded-lg border shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <div className="relative max-w-sm w-full">
-                        <input 
+                        <Input
                             type="text"
                             placeholder="Search partners directory..."
-                            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                            className="w-full pl-9 pr-3 py-2"
                             value={partnerSearch}
                             onChange={e => setPartnerSearch(e.target.value)}
                         />
                         <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                     </div>
-                    <button 
-                        onClick={openNewPartnerForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
-                    >
+                    <Button onClick={openNewPartnerForm} className="inline-flex items-center gap-1.5 px-3 py-2">
                         <Plus className="h-4 w-4" /> Add Logistics Vendor
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2">
@@ -437,18 +427,12 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </div>
 
                             <div className="mt-6 flex justify-end gap-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-                                <button 
-                                    onClick={() => openEditPartnerForm(p)}
-                                    className="text-xs font-mono font-medium text-blue-600 dark:text-blue-400 p-1 flex items-center gap-1"
-                                >
+                                <Button variant="ghost" size="sm" onClick={() => openEditPartnerForm(p)} className="flex items-center gap-1">
                                     <Edit2 className="h-3.5 w-3.5" /> Edit
-                                </button>
-                                <button 
-                                    onClick={() => deletePartner(p.id)}
-                                    className="text-xs font-mono font-medium text-red-500 p-1 flex items-center gap-1"
-                                >
+                                </Button>
+                                <Button variant="ghost" size="sm" onClick={() => deletePartner(p.id)} className="flex items-center gap-1 text-red-600">
                                     <Trash2 className="h-3.5 w-3.5" /> Delete
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     ))}
@@ -577,12 +561,9 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                         <h2 className="text-base font-bold font-mono text-gray-900 dark:text-gray-50 flex items-center gap-1.5"><Coins className="h-5 w-5 text-indigo-505" /> Vendor Bought Rates Sheets</h2>
                         <p className="text-xs text-gray-505">Freight buy-rates negotiated with ocean lines and local haulers partners.</p>
                     </div>
-                    <button 
-                        onClick={openNewRateForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
-                    >
+                    <Button onClick={openNewRateForm} className="inline-flex items-center gap-1.5 px-3 py-2">
                         <Plus className="h-4 w-4" /> Add rate record
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -624,18 +605,12 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-xs font-mono font-medium">
                                             <div className="flex justify-end gap-2">
-                                                <button 
-                                                    onClick={() => openEditRateForm(r)}
-                                                    className="p-1 text-gray-500 hover:text-gray-800 dark:hover:text-white"
-                                                >
+                                                <Button variant="ghost" size="icon" onClick={() => openEditRateForm(r)}>
                                                     <Edit2 className="h-4 w-4" />
-                                                </button>
-                                                <button 
-                                                    onClick={() => deleteRate(r.id)}
-                                                    className="p-1 text-red-500 hover:text-red-750"
-                                                >
+                                                </Button>
+                                                <Button variant="ghost" size="icon" onClick={() => deleteRate(r.id)} className="text-red-600">
                                                     <Trash2 className="h-4 w-4" />
-                                                </button>
+                                                </Button>
                                             </div>
                                         </td>
                                     </tr>
@@ -750,12 +725,9 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                         <h2 className="text-base font-bold font-mono text-gray-900 dark:text-gray-50 flex items-center gap-1.5"><FileCheck className="h-5 w-5 text-indigo-400" /> Procurement Jobs Purchase Orders (PO)</h2>
                         <p className="text-xs text-gray-500">Track outward commitments issued to local brokers, depots, and carriers.</p>
                     </div>
-                    <button 
-                        onClick={openNewPoForm}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs tracking-wider uppercase font-mono font-medium shadow"
-                    >
+                    <Button onClick={openNewPoForm} className="inline-flex items-center gap-1.5 px-3 py-2">
                         <Plus className="h-4 w-4" /> Issue PO Document
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2">
@@ -794,18 +766,12 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                     </div>
 
                                     <div className="flex gap-2">
-                                        <button 
-                                            onClick={() => openEditPoForm(po)}
-                                            className="text-xs font-mono font-medium text-blue-600 dark:text-blue-400 p-1 flex items-center gap-1"
-                                        >
+                                        <Button variant="ghost" size="sm" onClick={() => openEditPoForm(po)} className="flex items-center gap-1">
                                             <Edit2 className="h-3.5 w-3.5" /> Edit
-                                        </button>
-                                        <button 
-                                            onClick={() => deletePo(po.id)}
-                                            className="text-xs font-mono font-medium text-red-500 p-1 flex items-center gap-1"
-                                        >
+                                        </Button>
+                                        <Button variant="ghost" size="sm" onClick={() => deletePo(po.id)} className="flex items-center gap-1 text-red-600">
                                             <Trash2 className="h-3.5 w-3.5" /> Delete
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
