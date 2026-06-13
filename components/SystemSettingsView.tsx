@@ -24,12 +24,12 @@ const ThemeOption: React.FC<{
         onClick={onClick}
         className={`flex flex-col items-center justify-center w-32 h-24 rounded-lg border-2 transition-all duration-200 ${
             isActive
-                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/50'
+                ? 'border-gray-900 bg-gray-100 dark:bg-gray-700'
                 : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500'
         }`}
     >
         {icon}
-        <span className={`mt-2 text-sm font-medium ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}`}>{label}</span>
+        <span className={`mt-2 text-sm font-medium ${isActive ? 'text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'}`}>{label}</span>
     </button>
 );
 
@@ -87,15 +87,15 @@ const CompanyProfileSettings: React.FC<{
                 <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Company Name</label>
-                        <input type="text" name="name" id="name" value={settings.name} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
+                        <input type="text" name="name" id="name" value={settings.name} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
                     </div>
                      <div>
                         <label htmlFor="adminEmail" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Administrator Email</label>
-                        <input type="email" name="adminEmail" id="adminEmail" value={settings.adminEmail} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
+                        <input type="email" name="adminEmail" id="adminEmail" value={settings.adminEmail} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
                     </div>
                     <div className="sm:col-span-2">
                         <label htmlFor="address" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Company Address</label>
-                        <textarea name="address" id="address" value={settings.address} onChange={handleInputChange} rows={3} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600"></textarea>
+                        <textarea name="address" id="address" value={settings.address} onChange={handleInputChange} rows={3} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm dark:bg-gray-700 dark:border-gray-600"></textarea>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ const CompanyProfileSettings: React.FC<{
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                  <div>
                     <label htmlFor="fiscalYearStart" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Fiscal Year Start</label>
-                    <input type="date" name="fiscalYearStart" id="fiscalYearStart" value={settings.fiscalYearStart} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
+                    <input type="date" name="fiscalYearStart" id="fiscalYearStart" value={settings.fiscalYearStart} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm dark:bg-gray-700 dark:border-gray-600" />
                 </div>
                     <div>
                     <label htmlFor="defaultCurrency" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Default Currency</label>
@@ -153,7 +153,7 @@ const ToggleSwitch: React.FC<{
         </div>
         <button
             type="button"
-            className={`${enabled ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+            className={`${enabled ? 'bg-gray-900' : 'bg-gray-200 dark:bg-gray-600'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2`}
             role="switch"
             aria-checked={enabled}
             onClick={() => onChange(!enabled)}
@@ -268,7 +268,7 @@ const SystemSettingsView: React.FC<SystemSettingsViewProps> = ({ theme, setTheme
                             onClick={() => setActiveTab(tab.id)}
                             className={`${
                                 activeTab === tab.id
-                                    ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                                    ? 'border-gray-900 text-gray-900 dark:text-gray-100'
                                     : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600'
                             } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                         >
@@ -332,7 +332,7 @@ const SystemSettingsView: React.FC<SystemSettingsViewProps> = ({ theme, setTheme
                              {showSuccess && <p className="text-sm text-green-600 dark:text-green-400 mr-4">Settings saved successfully!</p>}
                             <button 
                                 onClick={handleSaveChanges}
-                                className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
                             >
                                 Save Changes
                             </button>

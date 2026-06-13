@@ -184,7 +184,7 @@ export const SIDEBAR_ITEMS: SidebarNavItem[] = [
       subItems: [
         { id: 'shipments-bookings', label: 'Shipments & Bookings', icon: <ProjectsIcon /> },
         { id: 'shipping-instructions', label: 'Shipping Instructions', icon: <FileCodeIcon /> },
-        { id: 'cargo-manifests', label: 'Cargo Manifests / PL / Inv', icon: <PackingListIcon /> },
+        { id: 'cargo-manifests', label: 'Packing List', icon: <PackingListIcon /> },
         { id: 'cargo-tracking', label: 'Cargo Tracking', icon: <CargoTrackingIcon /> },
         { id: 'demurrage-detention', label: 'Demurrage & Detention', icon: <DemurrageDetentionIcon /> },
       ]

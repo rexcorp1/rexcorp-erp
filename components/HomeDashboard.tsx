@@ -32,16 +32,17 @@ const SummaryCard: React.FC<{ card: DashboardSummaryCardData }> = ({ card }) => 
 
 
 const QuickAccessLink: React.FC<{ link: DashboardQuickAccessLink }> = ({ link }) => (
-    <Button asChild variant="ghost" className="justify-between w-full p-0 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
-        <a href="#" key={link.id} className="flex items-center justify-between w-full">
-            <div className="flex items-center space-x-3">
-                <link.icon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                <span>{link.label}</span>
-            </div>
-            {link.count && (
-                <span className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">{link.count}</span>
-            )}
-        </a>
+    <Button
+        variant="outline"
+        className="w-full justify-between text-sm font-medium text-gray-700 dark:text-gray-300 p-2 transition-colors duration-150"
+    >
+        <div className="flex items-center space-x-3">
+            <link.icon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+            <span>{link.label}</span>
+        </div>
+        {link.count && (
+            <span className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">{link.count}</span>
+        )}
     </Button>
 );
 
@@ -76,14 +77,14 @@ const HomeDashboard: React.FC = () => {
         {/* Reports & Masters Section */}
         <div className="space-y-6 rounded-lg border border-gray-200 bg-white p-6 dark:bg-gray-800 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Reports & Master Data</h2>
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-2 lg:grid-cols-3">
                 {DASHBOARD_REPORTS_MASTERS.map(category => (
-                    <Card key={category.id} className="rounded-lg border border-gray-200 p-5 dark:border-gray-700">
+                    <div key={category.id}>
                         <h3 className="font-semibold text-gray-700 dark:text-gray-200">{category.title}</h3>
-                        <ul className="mt-3 space-y-2">
+                        <ul className="mt-2 space-y-1">
                             {category.links.map(link => (
                                 <li key={link.id}>
-                                    <Button asChild variant="ghost" className="w-full justify-between px-0 text-sm text-left text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                                    <Button asChild variant="ghost" className="w-full justify-between px-0 text-sm text-left text-gray-600 hover:font-semibold hover:bg-transparent dark:text-gray-400">
                                         <a href="#" className="flex items-center justify-between space-x-2">
                                             <span>{link.label}</span>
                                             <ArrowUpRightIcon />
@@ -92,7 +93,7 @@ const HomeDashboard: React.FC = () => {
                                 </li>
                             ))}
                         </ul>
-                    </Card>
+                    </div>
                 ))}
             </div>
         </div>

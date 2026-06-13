@@ -337,9 +337,9 @@ const LogisticsView: React.FC<LogisticsViewProps> = ({
                 setBreadcrumbs([baseCrumb, shipmentListCrumb, { label: selectedShipment.shipmentId }]);
             }
         } else if (activeSubView === 'cargo-manifests') {
-            const packingListCrumb: Breadcrumb = { label: 'Cargo Manifests / PL', onClick: handleBackToPackingList };
+            const packingListCrumb: Breadcrumb = { label: 'Packing List', onClick: handleBackToPackingList };
             if (packingListViewState === 'list') {
-                setBreadcrumbs([baseCrumb, { label: 'Cargo Manifests / PL / Inv' }]);
+                setBreadcrumbs([baseCrumb, { label: 'Packing List' }]);
             } else if (selectedPackingList) {
                 setBreadcrumbs([baseCrumb, packingListCrumb, { label: selectedPackingList.packingListNumber }]);
             } else {

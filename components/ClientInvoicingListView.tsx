@@ -73,7 +73,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                                 </SelectContent>
                             </Select>
                         </div>
-                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <button className="text-sm font-medium text-gray-900 hover:underline dark:text-gray-100">Edit Filters</button>
                         <div className="space-y-2 border-t pt-4 dark:border-gray-600">
                             <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Save Filter</h3>
                             <label htmlFor="filter-name" className="sr-only">Filter Name</label>
@@ -113,7 +113,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                             </button>
                             <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><RefreshIcon className="h-4 w-4" /></button>
                             <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4" /></button>
-                            <button onClick={onNewInvoice} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ New Invoice</button>
+                            <button onClick={onNewInvoice} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800">+ New Invoice</button>
                         </div>
                     </div>
                     
@@ -133,9 +133,9 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                     </div>
 
                     {/* Invoices Table */}
-                    <div className="overflow-y-auto custom-scrollbar">
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="bg-gray-50 text-xs uppercase text-gray-700 sticky top-0 dark:bg-gray-700/50 dark:text-gray-300">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar">
+                        <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs uppercase text-gray-700 sticky top-0 z-10 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 border-b dark:border-gray-700">
                                 <tr>
                                     <th scope="col" className="p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600" /></th>
                                     <th scope="col" className="px-6 py-3 font-semibold">Invoice #</th>
@@ -150,7 +150,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                                     <tr key={invoice.id} className="bg-white border-b hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50">
                                         <td className="w-4 p-4"><Checkbox className="rounded border-gray-300 dark:bg-gray-900 dark:border-gray-600"/></td>
                                         <td className="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            <button onClick={() => onInvoiceSelect(invoice.id)} className="text-blue-600 hover:underline dark:text-blue-400">
+                                            <button onClick={() => onInvoiceSelect(invoice.id)} className="text-gray-900 hover:underline dark:text-gray-100">
                                                 {invoice.invoiceNumber}
                                             </button>
                                         </td>

@@ -409,7 +409,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             <div>
                                 <div className="flex justify-between items-start">
                                     <div>
-                                        <span className="text-[10px] font-bold font-mono text-blue-600 bg-blue-50 dark:bg-blue-950/40 dark:text-blue-400 px-2 py-0.5 rounded">
+                                        <span className="text-[10px] font-bold font-mono text-gray-900 bg-gray-100 dark:bg-gray-700 dark:text-gray-100 px-2 py-0.5 rounded">
                                             {p.type}
                                         </span>
                                         <h3 className="mt-2 text-base font-bold font-serif text-gray-900 dark:text-gray-55">{p.companyName}</h3>
@@ -453,7 +453,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Shipping Line / Carrier Name</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={rateForm.vendorName || ''}
                                     onChange={e => setRateForm({...rateForm, vendorName: e.target.value})}
                                     placeholder="e.g. MAERSK LINE"
@@ -465,7 +465,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Port of Loading (Origin)</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={rateForm.origin || ''}
                                     onChange={e => setRateForm({...rateForm, origin: e.target.value})}
                                     placeholder="e.g. Jakarta (IDTPP)"
@@ -477,7 +477,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Port of Discharge (Destination)</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={rateForm.destination || ''}
                                     onChange={e => setRateForm({...rateForm, destination: e.target.value})}
                                     placeholder="e.g. Singapore (SGSIN)"
@@ -488,7 +488,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Equipment / Container Type</label>
                                 <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={rateForm.containerType || '20GP'}
                                     onChange={e => setRateForm({...rateForm, containerType: e.target.value as any})}
                                     required
@@ -504,7 +504,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-750 dark:text-gray-300 uppercase tracking-widest font-mono">Ocean Freight Bought Price (USD)</label>
                                 <input 
                                     type="number"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
                                     value={rateForm.oceanFreightUSD || 0}
                                     onChange={e => setRateForm({...rateForm, oceanFreightUSD: Number(e.target.value)})}
                                     required
@@ -515,7 +515,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Local THC / Surcharges (IDR)</label>
                                 <input 
                                     type="number"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono"
                                     value={rateForm.surchargesIDR || 0}
                                     onChange={e => setRateForm({...rateForm, surchargesIDR: Number(e.target.value)})}
                                     required
@@ -526,7 +526,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Price Validity date limit</label>
                                 <input 
                                     type="date"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={rateForm.validUntil || ''}
                                     onChange={e => setRateForm({...rateForm, validUntil: e.target.value})}
                                     required
@@ -544,7 +544,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </button>
                             <button 
                                 type="submit"
-                                className="px-4 py-2 bg-blue-600 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
+                                className="px-4 py-2 bg-gray-900 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
                             >
                                 Save Contract Rate
                             </button>
@@ -637,7 +637,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">PO Registry Code</label>
                                 <input 
                                     type="text"
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono text-gray-900 font-bold"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 font-mono text-gray-900 font-bold"
                                     value={poForm.poNumber || ''}
                                     readOnly={isEditingPo}
                                     onChange={e => setPoForm({...poForm, poNumber: e.target.value})}
@@ -648,7 +648,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             <div>
                                 <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest font-mono">Target Logistics Partner</label>
                                 <select 
-                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                     value={poForm.vendorName || ''}
                                     onChange={e => setPoForm({...poForm, vendorName: e.target.value})}
                                     required
@@ -708,7 +708,7 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
                             </button>
                             <button 
                                 type="submit"
-                                className="px-4 py-2 bg-blue-600 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
+                                className="px-4 py-2 bg-gray-900 text-white rounded text-xs tracking-wider uppercase font-mono font-medium"
                             >
                                 Dispatch Purchase Order
                             </button>
@@ -797,48 +797,48 @@ const ProcurementView: React.FC<ProcurementViewProps> = ({
             <div className="grid gap-6 md:grid-cols-3">
                 <button 
                     onClick={() => setActiveSubView('partner-directory')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:shadow-md transition-all hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500"
                 >
-                    <div className="rounded-lg bg-blue-50 p-2.5 dark:bg-blue-950/40">
-                        <UserCheck className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="rounded-lg bg-gray-100 p-2.5 dark:bg-gray-700">
+                        <UserCheck className="h-6 w-6 text-gray-700 dark:text-gray-300" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono font-mono">Partner Directory</h3>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 leading-normal">
+                    <h3 className="mt-4 text-base font-semibold text-gray-950 dark:text-white font-mono font-mono">Partner Directory</h3>
+                    <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Keep track of active trucking agencies, co-broker associations, customs lines agents, and carrier directories on file.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-gray-900 dark:text-gray-100">
                         Open Directory &rarr;
                     </span>
                 </button>
 
                 <button 
                     onClick={() => setActiveSubView('vendor-rates')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:shadow-md transition-all hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500"
                 >
-                    <div className="rounded-lg bg-indigo-50 p-2.5 dark:bg-indigo-950/40">
-                        <Coins className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                    <div className="rounded-lg bg-gray-100 p-2.5 dark:bg-gray-700">
+                        <Coins className="h-6 w-6 text-gray-700 dark:text-gray-300" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono">Vendor Rates</h3>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 leading-normal">
+                    <h3 className="mt-4 text-base font-semibold text-gray-950 dark:text-white font-mono">Vendor Rates</h3>
+                    <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Store negotiated rates parameters contracts on routes like Jakarta, Surabaya, Shanghai or Port Klang ocean corridors.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-gray-900 dark:text-gray-100">
                         Open Rates Sheets &rarr;
                     </span>
                 </button>
 
                 <button 
                     onClick={() => setActiveSubView('purchase-orders')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:shadow-md transition-all hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500"
                 >
-                    <div className="rounded-lg bg-emerald-50 p-2.5 dark:bg-emerald-950/40">
-                        <FileCheck className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                    <div className="rounded-lg bg-gray-100 p-2.5 dark:bg-gray-700">
+                        <FileCheck className="h-6 w-6 text-gray-700 dark:text-gray-300" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono">Purchase Orders</h3>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 leading-normal">
+                    <h3 className="mt-4 text-base font-semibold text-gray-950 dark:text-white font-mono">Purchase Orders</h3>
+                    <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Log outward financial PO commitments issued directly to operational job operators with real-status clearances.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-gray-900 dark:text-gray-100">
                         Open PO Registry &rarr;
                     </span>
                 </button>

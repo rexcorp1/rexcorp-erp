@@ -396,7 +396,7 @@ const ShippingInstructionDetailView: React.FC<ShippingInstructionDetailViewProps
                 <button onClick={handlePrint} className="px-3 py-1.5 text-sm font-medium rounded-md bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 flex items-center space-x-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"><FileCodeIcon className="h-4 w-4" /><span>PDF</span></button>
                 <button onClick={handleRefresh} className="px-3 py-1.5 text-sm font-medium rounded-md bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 flex items-center space-x-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"><RefreshIcon className="h-4 w-4" /><span>Refresh</span></button>
                 <button className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"><DotsHorizontalIcon className="h-4 w-4"/></button>
-                <button onClick={handlePrint} className="px-4 py-1.5 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 flex items-center space-x-2 dark:bg-blue-600 dark:hover:bg-blue-700"><PrinterIcon className="h-4 w-4"/><span>Print</span></button>
+                <button onClick={handlePrint} className="px-4 py-1.5 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 flex items-center space-x-2 dark:bg-gray-900 dark:hover:bg-gray-800"><PrinterIcon className="h-4 w-4"/><span>Print</span></button>
             </div>
         </div>
     );
@@ -408,7 +408,7 @@ const ShippingInstructionDetailView: React.FC<ShippingInstructionDetailViewProps
             </div>
             <div className="flex items-center space-x-4">
                 <button onClick={() => setIsPreview(true)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Preview</button>
-                <button onClick={handleSave} className="px-4 py-2 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">Save</button>
+                <button onClick={handleSave} className="px-4 py-2 text-sm font-semibold text-white bg-black rounded-md hover:bg-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800">Save</button>
             </div>
         </div>
     );

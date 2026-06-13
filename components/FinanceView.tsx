@@ -705,7 +705,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Create invoices, adjust billing items, calculate VAT rates, and transmit invoices electronically to clients.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Invoices &rarr;
                     </span>
                 </button>
@@ -721,7 +721,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Reconcile unpaid invoices aging schedules (30/60/90 days overdue thresholds) and manage corporate liquidity assets.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Receivables &rarr;
                     </span>
                 </button>
@@ -737,7 +737,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Log freight voyages accruals basis operational expenses rows before formal vendor bills materialize on file.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Accruals Registry &rarr;
                     </span>
                 </button>
@@ -753,7 +753,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Audit bills submitted by global carriers lines, depot yards, and local truckers before executing accounts payments.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Vendor Bills &rarr;
                     </span>
                 </button>
@@ -769,7 +769,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({
                     <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Unified balance audit worksheets Reconciling trial totals, Debit/Credit flows, and journal cash movements.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Main Ledger &rarr;
                     </span>
                 </button>

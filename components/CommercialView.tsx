@@ -309,48 +309,48 @@ const CommercialView: React.FC<CommercialViewProps> = ({
             <div className="grid gap-6 md:grid-cols-3">
                 <button 
                     onClick={() => setActiveSubView('client-accounts')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-blue-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:shadow-md transition-all hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500"
                 >
-                    <div className="rounded-lg bg-blue-50 p-2.5 dark:bg-blue-950/50">
-                        <UsersIcon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="rounded-lg bg-gray-100 p-2.5 dark:bg-gray-700">
+                        <UsersIcon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono">Client Accounts</h3>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                    <h3 className="mt-4 text-base font-semibold text-gray-950 dark:text-white font-mono">Client Accounts</h3>
+                    <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Manage database profiles of exporters/importers, field agents, overseas networks, and interactions history.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Accounts &rarr;
                     </span>
                 </button>
 
                 <button 
                     onClick={() => setActiveSubView('service-quotations')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-green-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:shadow-md transition-all hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500"
                 >
-                    <div className="rounded-lg bg-green-50 p-2.5 dark:bg-green-950/50">
-                        <DocumentReportIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
+                    <div className="rounded-lg bg-gray-100 p-2.5 dark:bg-gray-700">
+                        <DocumentReportIcon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono">Service Quotations</h3>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-300">
+                    <h3 className="mt-4 text-base font-semibold text-gray-950 dark:text-white font-mono">Service Quotations</h3>
+                    <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Structure buy/sell logistics item items, calculate prices, and issue professional service proposals instantly.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-green-600 hover:text-green-700 dark:text-green-300">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Quotations &rarr;
                     </span>
                 </button>
 
                 <button 
                     onClick={() => setActiveSubView('client-contracts')}
-                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:border-indigo-500 hover:shadow dark:border-gray-700 dark:bg-gray-800"
+                    className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:shadow-md transition-all hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500"
                 >
-                    <div className="rounded-lg bg-indigo-50 p-2.5 dark:bg-indigo-950/50">
-                        <BriefcaseIcon className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                    <div className="rounded-lg bg-gray-100 p-2.5 dark:bg-gray-700">
+                        <BriefcaseIcon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 font-mono">Client Contracts</h3>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                    <h3 className="mt-4 text-base font-semibold text-gray-950 dark:text-white font-mono">Client Contracts</h3>
+                    <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-normal">
                         Lock in long-term freight agreements, contract durations, and signed payment terms (TOP) on file.
                     </p>
-                    <span className="mt-4 inline-flex items-center text-xs font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">
+                    <span className="mt-4 inline-flex items-center text-xs font-medium text-gray-900 hover:underline dark:text-gray-100">
                         Open Contracts &rarr;
                     </span>
                 </button>
