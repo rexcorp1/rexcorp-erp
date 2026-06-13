@@ -62,7 +62,7 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
             <div className="flex flex-1 overflow-hidden">
                 {/* Filter Sidebar */}
                 <aside className={`w-64 flex-shrink-0 bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${!isSubPanelOpen ? 'hidden' : 'mr-6'}`}>
-                        <div className="space-y-2">
+                    <div className="space-y-4">
                         <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Filter By</h3>
                         <div className="space-y-2">
                             <label htmlFor="assigned-to" className="sr-only">Assigned To</label>
@@ -70,17 +70,19 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                                 <SelectTrigger className="w-full p-2">
                                     <SelectValue placeholder="Assigned To" />
                                 </SelectTrigger>
-                                <SelectContent>                                    <SelectItem value="placeholder" disabled>No items</SelectItem>                                </SelectContent>
-                            </Select>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
                                 </SelectContent>
                             </Select>
+                        </div>
+                        <div className="space-y-2">
                             <label htmlFor="created-by" className="sr-only">Created By</label>
                             <Select onValueChange={() => {}}>
                                 <SelectTrigger className="w-full p-2">
                                     <SelectValue placeholder="Created By" />
                                 </SelectTrigger>
-                                <SelectContent>                                    <SelectItem value="placeholder" disabled>No items</SelectItem>                                </SelectContent>
-                            </Select>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -91,8 +93,8 @@ const QuotationListView: React.FC<QuotationListViewProps> = ({
                                 <SelectTrigger className="w-full p-2">
                                     <SelectValue placeholder="Tags" />
                                 </SelectTrigger>
-                                <SelectContent>                                    <SelectItem value="placeholder" disabled>No items</SelectItem>                                </SelectContent>
-                            </Select>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>

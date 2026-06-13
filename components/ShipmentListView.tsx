@@ -60,28 +60,24 @@ const ShipmentListView: React.FC<ShipmentListViewProps> = ({ onShipmentSelect, i
                         <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Filter By</h3>
                         <div className="space-y-2">
                             <label htmlFor="status-filter" className="sr-only">Status</label>
-                            <Select value={statusFilter} onValueChange={val => setStatusFilter(val)} disabled>
+                            <Select value={statusFilter} onValueChange={val => setStatusFilter(val)}>
                                 <SelectTrigger className="w-full p-2">
                                     <SelectValue placeholder="Status" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
-                                </SelectContent>
-                            </Select>
                                     <SelectItem value="In Transit">In Transit</SelectItem>
                                     <SelectItem value="Customs Clearance">Customs Clearance</SelectItem>
                                     <SelectItem value="Delivered">Delivered</SelectItem>
+                                    <SelectItem value="Booked">Booked</SelectItem>
+                                    <SelectItem value="On Hold">On Hold</SelectItem>
                                 </SelectContent>
                             </Select>
                             <label htmlFor="mode-filter" className="sr-only">Mode</label>
-                            <Select value={modeFilter} onValueChange={val => setModeFilter(val)} disabled>
+                            <Select value={modeFilter} onValueChange={val => setModeFilter(val)}>
                                 <SelectTrigger className="w-full p-2">
                                     <SelectValue placeholder="Mode of Transport" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
-                                </SelectContent>
-                            </Select>
                                     <SelectItem value="Sea">Sea</SelectItem>
                                     <SelectItem value="Air">Air</SelectItem>
                                     <SelectItem value="Land">Land</SelectItem>

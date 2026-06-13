@@ -45,7 +45,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
     };
 
     return (
-        <><div className="flex h-full flex-col">
+        <div className="flex h-full flex-col">
             <div className="flex flex-1 overflow-hidden">
                 {/* Filter Sidebar */}
                 <aside className={`w-64 flex-shrink-0 bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${!isSubPanelOpen ? 'hidden' : 'mr-6'}`}>
@@ -61,24 +61,24 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                                     <SelectItem value="placeholder" disabled>No items</SelectItem>
                                 </SelectContent>
                             </Select>
-                        </SelectContent>
-                    </Select>
-                    <label htmlFor="status" className="sr-only">Status</label>
-                    <Select value={statusFilter} onValueChange={val => setStatusFilter(val)} disabled>
-                        <SelectTrigger className="w-full p-2">
-                            <SelectValue placeholder="Status" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="placeholder" disabled>No items</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </SelectContent>
-            </Select>
-        </div><button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button><div className="space-y-2 border-t pt-4 dark:border-gray-600">
-                <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Save Filter</h3>
-                <label htmlFor="filter-name" className="sr-only">Filter Name</label>
-                <input type="text" id="filter-name" placeholder="Filter Name" className="w-full rounded-md border-gray-300 bg-gray-100 p-2 text-sm placeholder-gray-500 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
-            </div></>
+                        </div>
+                        <div className="space-y-2">
+                            <label htmlFor="status" className="sr-only">Status</label>
+                            <Select value={statusFilter} onValueChange={val => setStatusFilter(val)} disabled>
+                                <SelectTrigger className="w-full p-2">
+                                    <SelectValue placeholder="Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="placeholder" disabled>No items</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Edit Filters</button>
+                        <div className="space-y-2 border-t pt-4 dark:border-gray-600">
+                            <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-300">Save Filter</h3>
+                            <label htmlFor="filter-name" className="sr-only">Filter Name</label>
+                            <input type="text" id="filter-name" placeholder="Filter Name" className="w-full rounded-md border-gray-300 bg-gray-100 p-2 text-sm placeholder-gray-500 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+                        </div>
                     </div>
                 </aside>
 
@@ -86,7 +86,7 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                 <div className="flex-1 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 flex flex-col">
                     {/* Header Actions */}
                     <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 p-4">
-                        <><div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2">
                             <button
                                 className="rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
                                 onClick={() => setIsSubPanelOpen(!isSubPanelOpen)}
@@ -106,28 +106,30 @@ const ClientInvoicingListView: React.FC<ClientInvoicingListViewProps> = ({ invoi
                                 )}
                             </button>
                             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Client Invoices</h1>
-                        </div><div className="flex items-center space-x-2">
-                                <button className="flex items-center space-x-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <ListIcon className="h-4 w-4" /><span>List View</span><ChevronDownIcon className="h-4 w-4" />
-                                </button>
-                                <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><RefreshIcon className="h-4 w-4" /></button>
-                                <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4" /></button>
-                                <button onClick={onNewInvoice} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ New Invoice</button>
-                            </div></>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <button className="flex items-center space-x-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
+                                <ListIcon className="h-4 w-4" /><span>List View</span><ChevronDownIcon className="h-4 w-4" />
+                            </button>
+                            <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><RefreshIcon className="h-4 w-4" /></button>
+                            <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"><DotsHorizontalIcon className="h-4 w-4" /></button>
+                            <button onClick={onNewInvoice} className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">+ New Invoice</button>
+                        </div>
                     </div>
                     
                     {/* Table Actions */}
                     <div className="flex items-center justify-between p-4">
-                        <><div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2">
                             <button className="flex items-center space-x-1 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
                                 <FilterIcon className="h-4 w-4" /><span>Filter</span>
                             </button>
                             <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-md dark:text-gray-400 dark:hover:bg-gray-700"><XIcon className="h-4 w-4" /></button>
                             <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-md dark:text-gray-400 dark:hover:bg-gray-700"><ArrowUpDownIcon className="h-4 w-4" /></button>
                             <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Invoice Date</span>
-                        </div><div className="flex items-center space-x-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                <span>{invoices.length} of {invoices.length}</span>
-                            </div></>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <span>{invoices.length} of {invoices.length}</span>
+                        </div>
                     </div>
 
                     {/* Invoices Table */}
